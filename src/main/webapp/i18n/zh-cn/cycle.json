@@ -1,0 +1,25 @@
+{
+  "jhipsterApp": {
+    "cycle": {
+      "home": {
+        "title": "Cycles",
+        "createLabel": "创建新 Cycle",
+        "createOrEditLabel": "创建或编辑 Cycle",
+        "notFound": "No Cycles found"
+      },
+      "created": "Cycle {{ param }} 创建成功",
+      "updated": "Cycle {{ param }} 更新成功",
+      "deleted": "Cycle {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Cycle {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Cycle"
+      },
+      "cycleCount": "Cycle Count",
+      "cycleDatetime": "Cycle Datetime",
+      "cyclePassword": "Cycle Password",
+      "user": "User"
+    }
+  }
+}

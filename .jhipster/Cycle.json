@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cycle"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "cycleCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cycleDatetime",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "cyclePassword",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200108032311",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "cycle",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

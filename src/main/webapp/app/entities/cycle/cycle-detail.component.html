@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cycle">
+            <h2><span jhiTranslate="jhipsterApp.cycle.detail.title">Cycle</span> {{cycle.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhipsterApp.cycle.cycleCount">Cycle Count</span></dt>
+                <dd>
+                    <span>{{cycle.cycleCount}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.cycle.cycleDatetime">Cycle Datetime</span></dt>
+                <dd>
+                    <span>{{cycle.cycleDatetime}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.cycle.cyclePassword">Cycle Password</span></dt>
+                <dd>
+                    <span>{{cycle.cyclePassword}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.cycle.user">User</span></dt>
+                <dd>
+                    {{cycle.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cycle', cycle.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
