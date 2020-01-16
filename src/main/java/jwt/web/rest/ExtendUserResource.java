@@ -47,20 +47,9 @@ public class ExtendUserResource {
 
     private final ExtendUserService extendUserService;
 
-    ProfileService profileService;
 
-    UserService userService;
-
-    @Autowired
-    AuthorityRepository authorityRepository;
-
-
-
-
-    public ExtendUserResource(ExtendUserService extendUserService, ProfileService profileService, UserService userService) {
+    public ExtendUserResource(ExtendUserService extendUserService) {
         this.extendUserService = extendUserService;
-        this.profileService = profileService;
-        this.userService = userService;
     }
 
     /**
@@ -73,23 +62,6 @@ public class ExtendUserResource {
     @PostMapping("/extend-users")
     public ResponseEntity<ExtendUser> createExtendUser(@RequestBody ExtendUser extendUser) throws URISyntaxException {
         log.debug("REST request to save ExtendUser : {}", extendUser);
-
-        List<Permission> permissionList = new ArrayList<Permission>(profileService.findOne(extendUser.getProfile().getId()).get().getPermissions());
-        Set<String> permissionSet = new HashSet<>();
-        Set<Authority> authoritySet = new HashSet<>();
-        for (Permission permit: permissionList) {
-            permissionSet.add(permit.getName());
-        }
-        for (String name: permissionSet) {
-            authoritySet.add(authorityRepository.findByName(name));
-        }
-
-        extendUser.getUser().setAuthorities(authoritySet);
-
-        UserDTO userDTO = new UserDTO(extendUser.getUser());
-
-        userService.updateUser(userDTO);
-
 
         if (extendUser.getId() != null) {
             throw new BadRequestAlertException("A new extendUser cannot already have an ID", ENTITY_NAME, "idexists");
@@ -115,26 +87,6 @@ public class ExtendUserResource {
     @PutMapping("/extend-users")
     public ResponseEntity<ExtendUser> updateExtendUser(@RequestBody ExtendUser extendUser) throws URISyntaxException {
         log.debug("REST request to update ExtendUser : {}", extendUser);
-
-
-        //Update user Authority with Profile info
-        List<Permission> permissionList = new ArrayList<Permission>(profileService.findOne(extendUser.getProfile().getId()).get().getPermissions());
-        Set<String> permissionSet = new HashSet<>();
-        Set<Authority> authoritySet = new HashSet<>();
-        for (Permission permit: permissionList) {
-            permissionSet.add(permit.getName());
-        }
-        for (String name: permissionSet) {
-            authoritySet.add(authorityRepository.findByName(name));
-        }
-
-        extendUser.getUser().setAuthorities(authoritySet);
-
-        UserDTO userDTO = new UserDTO(extendUser.getUser());
-
-        userService.updateUser(userDTO);
-
-
         if (extendUser.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }

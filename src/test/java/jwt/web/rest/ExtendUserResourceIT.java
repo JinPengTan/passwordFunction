@@ -63,7 +63,7 @@ public class ExtendUserResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ExtendUserResource extendUserResource = new ExtendUserResource(extendUserService, null,null);
+        final ExtendUserResource extendUserResource = new ExtendUserResource(extendUserService);
         this.restExtendUserMockMvc = MockMvcBuilders.standaloneSetup(extendUserResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

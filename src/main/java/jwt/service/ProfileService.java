@@ -1,6 +1,8 @@
 package jwt.service;
 
+import jwt.domain.ExtendUser;
 import jwt.domain.Profile;
+import jwt.repository.ExtendUserRepository;
 import jwt.repository.ProfileRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service Implementation for managing {@link Profile}.
@@ -23,8 +26,14 @@ public class ProfileService {
 
     private final ProfileRepository profileRepository;
 
-    public ProfileService(ProfileRepository profileRepository) {
+    ExtendUserRepository extendUserRepository;
+
+    profileAutoUpdateUser profileAutoUpdateUser;
+
+    public ProfileService(ProfileRepository profileRepository, ExtendUserRepository extendUserRepository, profileAutoUpdateUser profileAutoUpdateUser) {
         this.profileRepository = profileRepository;
+        this.extendUserRepository = extendUserRepository;
+        this.profileAutoUpdateUser = profileAutoUpdateUser;
     }
 
     /**
@@ -35,7 +44,11 @@ public class ProfileService {
      */
     public Profile save(Profile profile) {
         log.debug("Request to save Profile : {}", profile);
-        return profileRepository.save(profile);
+
+        Profile profil1 = profileRepository.save(profile);
+        profileAutoUpdateUser.autoUpdateExtendUserProfile(profile);
+
+        return profil1;
     }
 
     /**

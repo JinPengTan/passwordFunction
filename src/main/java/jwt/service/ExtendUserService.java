@@ -1,17 +1,22 @@
 package jwt.service;
 
+import jwt.domain.Authority;
 import jwt.domain.ExtendUser;
+import jwt.domain.Permission;
+import jwt.repository.AuthorityRepository;
 import jwt.repository.ExtendUserRepository;
 import jwt.repository.UserRepository;
+import jwt.service.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Service Implementation for managing {@link ExtendUser}.
@@ -26,9 +31,13 @@ public class ExtendUserService {
 
     private final UserRepository userRepository;
 
-    public ExtendUserService(ExtendUserRepository extendUserRepository, UserRepository userRepository) {
+    private final profileAutoUpdateUser profileAutoUpdateUser;
+
+
+    public ExtendUserService(ExtendUserRepository extendUserRepository, UserRepository userRepository, profileAutoUpdateUser profileAutoUpdateUser ) {
         this.extendUserRepository = extendUserRepository;
         this.userRepository = userRepository;
+        this.profileAutoUpdateUser = profileAutoUpdateUser;
     }
 
     /**
@@ -39,6 +48,9 @@ public class ExtendUserService {
      */
     public ExtendUser save(ExtendUser extendUser) {
         log.debug("Request to save ExtendUser : {}", extendUser);
+
+        profileAutoUpdateUser.updateUserAuthority(extendUser);
+
         long userId = extendUser.getUser().getId();
         userRepository.findById(userId).ifPresent(extendUser::user);
         return extendUserRepository.save(extendUser);
