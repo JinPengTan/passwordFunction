@@ -16,14 +16,14 @@ import java.util.Optional;
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
-    @Query(value = "select distinct profile from Profile profile left join fetch profile.users left join fetch profile.permissions",
+    @Query(value = "select distinct profile from Profile profile left join fetch profile.permissions",
         countQuery = "select count(distinct profile) from Profile profile")
     Page<Profile> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct profile from Profile profile left join fetch profile.users left join fetch profile.permissions")
+    @Query("select distinct profile from Profile profile left join fetch profile.permissions")
     List<Profile> findAllWithEagerRelationships();
 
-    @Query("select profile from Profile profile left join fetch profile.users left join fetch profile.permissions where profile.id =:id")
+    @Query("select profile from Profile profile left join fetch profile.permissions where profile.id =:id")
     Optional<Profile> findOneWithEagerRelationships(@Param("id") Long id);
 
 }

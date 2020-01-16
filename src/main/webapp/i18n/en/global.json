@@ -10,6 +10,7 @@
         "cycle": "Cycle",
         "profile": "Profile",
         "permission": "Permission",
+        "extendUser": "Extend User",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

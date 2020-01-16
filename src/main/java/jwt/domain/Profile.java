@@ -1,4 +1,5 @@
 package jwt.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -23,16 +24,14 @@ public class Profile implements Serializable {
     private String role;
 
     @ManyToMany
-    @JoinTable(name = "profile_user",
-               joinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    private Set<User> users = new HashSet<>();
-
-    @ManyToMany
     @JoinTable(name = "profile_permission",
                joinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id"))
     private Set<Permission> permissions = new HashSet<>();
+
+    @ManyToMany(mappedBy = "profiles")
+    @JsonIgnore
+    private Set<ExtendUser> extendUsers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -54,29 +53,6 @@ public class Profile implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public Profile users(Set<User> users) {
-        this.users = users;
-        return this;
-    }
-
-    public Profile addUser(User user) {
-        this.users.add(user);
-        return this;
-    }
-
-    public Profile removeUser(User user) {
-        this.users.remove(user);
-        return this;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
     public Set<Permission> getPermissions() {
@@ -102,6 +78,31 @@ public class Profile implements Serializable {
 
     public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
+    }
+
+    public Set<ExtendUser> getExtendUsers() {
+        return extendUsers;
+    }
+
+    public Profile extendUsers(Set<ExtendUser> extendUsers) {
+        this.extendUsers = extendUsers;
+        return this;
+    }
+
+    public Profile addExtendUser(ExtendUser extendUser) {
+        this.extendUsers.add(extendUser);
+        extendUser.getProfiles().add(this);
+        return this;
+    }
+
+    public Profile removeExtendUser(ExtendUser extendUser) {
+        this.extendUsers.remove(extendUser);
+        extendUser.getProfiles().remove(this);
+        return this;
+    }
+
+    public void setExtendUsers(Set<ExtendUser> extendUsers) {
+        this.extendUsers = extendUsers;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

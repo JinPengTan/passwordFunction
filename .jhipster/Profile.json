@@ -3,19 +3,18 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "user",
-            "otherEntityName": "user",
-            "relationshipType": "many-to-many",
-            "otherEntityField": "login",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "profile"
-        },
-        {
             "relationshipName": "permission",
             "otherEntityName": "permission",
             "relationshipType": "many-to-many",
             "otherEntityField": "name",
             "ownerSide": true,
+            "otherEntityRelationshipName": "profile"
+        },
+        {
+            "relationshipName": "extendUser",
+            "otherEntityName": "extendUser",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
             "otherEntityRelationshipName": "profile"
         }
     ],

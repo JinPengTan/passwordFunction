@@ -17,8 +17,8 @@
         "title": "Profile"
       },
       "role": "Role",
-      "user": "User",
-      "permission": "Permission"
+      "permission": "Permission",
+      "extendUser": "Extend User"
     }
   }
 }

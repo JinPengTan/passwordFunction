@@ -8,12 +8,8 @@ import { map } from 'rxjs/operators';
 
 import { IProfile, Profile } from 'app/shared/model/profile.model';
 import { ProfileService } from './profile.service';
-import { IUser } from 'app/core/user/user.model';
-import { UserService } from 'app/core/user/user.service';
 import { IPermission } from 'app/shared/model/permission.model';
 import { PermissionService } from 'app/entities/permission/permission.service';
-
-type SelectableEntity = IUser | IPermission;
 
 @Component({
   selector: 'jhi-profile-update',
@@ -22,20 +18,16 @@ type SelectableEntity = IUser | IPermission;
 export class ProfileUpdateComponent implements OnInit {
   isSaving = false;
 
-  users: IUser[] = [];
-
   permissions: IPermission[] = [];
 
   editForm = this.fb.group({
     id: [],
     role: [],
-    users: [],
     permissions: []
   });
 
   constructor(
     protected profileService: ProfileService,
-    protected userService: UserService,
     protected permissionService: PermissionService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -44,15 +36,6 @@ export class ProfileUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ profile }) => {
       this.updateForm(profile);
-
-      this.userService
-        .query()
-        .pipe(
-          map((res: HttpResponse<IUser[]>) => {
-            return res.body ? res.body : [];
-          })
-        )
-        .subscribe((resBody: IUser[]) => (this.users = resBody));
 
       this.permissionService
         .query()
@@ -69,7 +52,6 @@ export class ProfileUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: profile.id,
       role: profile.role,
-      users: profile.users,
       permissions: profile.permissions
     });
   }
@@ -93,7 +75,6 @@ export class ProfileUpdateComponent implements OnInit {
       ...new Profile(),
       id: this.editForm.get(['id'])!.value,
       role: this.editForm.get(['role'])!.value,
-      users: this.editForm.get(['users'])!.value,
       permissions: this.editForm.get(['permissions'])!.value
     };
   }
@@ -114,11 +95,11 @@ export class ProfileUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
+  trackById(index: number, item: IPermission): any {
     return item.id;
   }
 
-  getSelected(selectedVals: SelectableEntity[], option: SelectableEntity): SelectableEntity {
+  getSelected(selectedVals: IPermission[], option: IPermission): IPermission {
     if (selectedVals) {
       for (let i = 0; i < selectedVals.length; i++) {
         if (option.id === selectedVals[i].id) {

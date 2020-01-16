@@ -25,17 +25,6 @@
 
     <changeSet id="20200116025749-1-relations" author="jhipster">
 
-        <createTable tableName="profile_user">
-            <column name="user_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="profile_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="profile_id, user_id" tableName="profile_user"/>
-        
         <createTable tableName="profile_permission">
             <column name="permission_id" type="bigint">
                 <constraints nullable="false"/>

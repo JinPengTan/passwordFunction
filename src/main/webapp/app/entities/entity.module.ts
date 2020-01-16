@@ -15,6 +15,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'permission',
         loadChildren: () => import('./permission/permission.module').then(m => m.JhipsterPermissionModule)
+      },
+      {
+        path: 'extend-user',
+        loadChildren: () => import('./extend-user/extend-user.module').then(m => m.JhipsterExtendUserModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

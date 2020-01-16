@@ -16,12 +16,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="jhipsterApp.profile.user" for="field_users">User</label>
-                    <select class="form-control" id="field_users" multiple name="users" formControlName="users">
-                        <option [ngValue]="getSelected(editForm.get('users')!.value, userOption)" *ngFor="let userOption of users; trackBy: trackById">{{userOption.login}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label jhiTranslate="jhipsterApp.profile.permission" for="field_permissions">Permission</label>
                     <select class="form-control" id="field_permissions" multiple name="permissions" formControlName="permissions">
                         <option [ngValue]="getSelected(editForm.get('permissions')!.value, permissionOption)" *ngFor="let permissionOption of permissions; trackBy: trackById">{{permissionOption.name}}</option>

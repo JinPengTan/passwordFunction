@@ -9,18 +9,6 @@
     <changeSet id="20200116025749-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="profile_id"
-                                 baseTableName="profile_user"
-                                 constraintName="fk_profile_user_profile_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="profile"/>
-
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="profile_user"
-                                 constraintName="fk_profile_user_user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
-        
-        <addForeignKeyConstraint baseColumnNames="profile_id"
                                  baseTableName="profile_permission"
                                  constraintName="fk_profile_permission_profile_id"
                                  referencedColumnNames="id"
