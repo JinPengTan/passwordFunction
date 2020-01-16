@@ -58,7 +58,7 @@ public class ProfileService {
     public Page<Profile> findAllWithEagerRelationships(Pageable pageable) {
         return profileRepository.findAllWithEagerRelationships(pageable);
     }
-    
+
 
     /**
      * Get one profile by id.

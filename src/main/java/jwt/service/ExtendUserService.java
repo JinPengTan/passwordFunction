@@ -56,15 +56,6 @@ public class ExtendUserService {
         return extendUserRepository.findAll(pageable);
     }
 
-    /**
-     * Get all the extendUsers with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    public Page<ExtendUser> findAllWithEagerRelationships(Pageable pageable) {
-        return extendUserRepository.findAllWithEagerRelationships(pageable);
-    }
-    
 
     /**
      * Get one extendUser by id.
@@ -75,7 +66,7 @@ public class ExtendUserService {
     @Transactional(readOnly = true)
     public Optional<ExtendUser> findOne(Long id) {
         log.debug("Request to get ExtendUser : {}", id);
-        return extendUserRepository.findOneWithEagerRelationships(id);
+        return extendUserRepository.findById(id);
     }
 
     /**

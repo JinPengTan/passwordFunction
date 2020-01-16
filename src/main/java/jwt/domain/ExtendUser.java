@@ -1,10 +1,9 @@
 package jwt.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A ExtendUser.
@@ -24,11 +23,9 @@ public class ExtendUser implements Serializable {
     @JoinColumn(name = "id")
     private User user;
 
-    @ManyToMany
-    @JoinTable(name = "extend_user_profile",
-               joinColumns = @JoinColumn(name = "extend_user_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"))
-    private Set<Profile> profiles = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("extendUsers")
+    private Profile profile;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,29 +49,17 @@ public class ExtendUser implements Serializable {
         this.user = user;
     }
 
-    public Set<Profile> getProfiles() {
-        return profiles;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public ExtendUser profiles(Set<Profile> profiles) {
-        this.profiles = profiles;
+    public ExtendUser profile(Profile profile) {
+        this.profile = profile;
         return this;
     }
 
-    public ExtendUser addProfile(Profile profile) {
-        this.profiles.add(profile);
-        profile.getExtendUsers().add(this);
-        return this;
-    }
-
-    public ExtendUser removeProfile(Profile profile) {
-        this.profiles.remove(profile);
-        profile.getExtendUsers().remove(this);
-        return this;
-    }
-
-    public void setProfiles(Set<Profile> profiles) {
-        this.profiles = profiles;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

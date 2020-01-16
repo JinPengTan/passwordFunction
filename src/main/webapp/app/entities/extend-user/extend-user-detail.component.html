@@ -11,9 +11,9 @@
                 </dd>
                 <dt><span jhiTranslate="jhipsterApp.extendUser.profile">Profile</span></dt>
                 <dd>
-                    <span *ngFor="let profile of extendUser.profiles; let last = last">
-                        <a [routerLink]="['/profile', profile?.id, 'view' ]">{{profile.role}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <div *ngIf="extendUser.profile">
+                        <a [routerLink]="['/profile', extendUser.profile?.id, 'view']">{{extendUser.profile?.role}}</a>
+                    </div>
                 </dd>
             </dl>
 

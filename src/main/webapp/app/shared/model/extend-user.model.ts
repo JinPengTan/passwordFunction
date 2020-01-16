@@ -4,9 +4,9 @@ import { IProfile } from 'app/shared/model/profile.model';
 export interface IExtendUser {
   id?: number;
   user?: IUser;
-  profiles?: IProfile[];
+  profile?: IProfile;
 }
 
 export class ExtendUser implements IExtendUser {
-  constructor(public id?: number, public user?: IUser, public profiles?: IProfile[]) {}
+  constructor(public id?: number, public user?: IUser, public profile?: IProfile) {}
 }

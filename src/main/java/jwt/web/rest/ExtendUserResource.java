@@ -1,7 +1,14 @@
 package jwt.web.rest;
 
+import jwt.domain.Authority;
 import jwt.domain.ExtendUser;
+import jwt.domain.Permission;
+import jwt.domain.Profile;
+import jwt.repository.AuthorityRepository;
 import jwt.service.ExtendUserService;
+import jwt.service.ProfileService;
+import jwt.service.UserService;
+import jwt.service.dto.UserDTO;
 import jwt.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -9,6 +16,7 @@ import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,9 +29,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing {@link jwt.domain.ExtendUser}.
@@ -41,8 +47,20 @@ public class ExtendUserResource {
 
     private final ExtendUserService extendUserService;
 
-    public ExtendUserResource(ExtendUserService extendUserService) {
+    ProfileService profileService;
+
+    UserService userService;
+
+    @Autowired
+    AuthorityRepository authorityRepository;
+
+
+
+
+    public ExtendUserResource(ExtendUserService extendUserService, ProfileService profileService, UserService userService) {
         this.extendUserService = extendUserService;
+        this.profileService = profileService;
+        this.userService = userService;
     }
 
     /**
@@ -55,6 +73,24 @@ public class ExtendUserResource {
     @PostMapping("/extend-users")
     public ResponseEntity<ExtendUser> createExtendUser(@RequestBody ExtendUser extendUser) throws URISyntaxException {
         log.debug("REST request to save ExtendUser : {}", extendUser);
+
+        List<Permission> permissionList = new ArrayList<Permission>(profileService.findOne(extendUser.getProfile().getId()).get().getPermissions());
+        Set<String> permissionSet = new HashSet<>();
+        Set<Authority> authoritySet = new HashSet<>();
+        for (Permission permit: permissionList) {
+            permissionSet.add(permit.getName());
+        }
+        for (String name: permissionSet) {
+            authoritySet.add(authorityRepository.findByName(name));
+        }
+
+        extendUser.getUser().setAuthorities(authoritySet);
+
+        UserDTO userDTO = new UserDTO(extendUser.getUser());
+
+        userService.updateUser(userDTO);
+
+
         if (extendUser.getId() != null) {
             throw new BadRequestAlertException("A new extendUser cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -79,10 +115,31 @@ public class ExtendUserResource {
     @PutMapping("/extend-users")
     public ResponseEntity<ExtendUser> updateExtendUser(@RequestBody ExtendUser extendUser) throws URISyntaxException {
         log.debug("REST request to update ExtendUser : {}", extendUser);
+
+
+        //Update user Authority with Profile info
+        List<Permission> permissionList = new ArrayList<Permission>(profileService.findOne(extendUser.getProfile().getId()).get().getPermissions());
+        Set<String> permissionSet = new HashSet<>();
+        Set<Authority> authoritySet = new HashSet<>();
+        for (Permission permit: permissionList) {
+            permissionSet.add(permit.getName());
+        }
+        for (String name: permissionSet) {
+            authoritySet.add(authorityRepository.findByName(name));
+        }
+
+        extendUser.getUser().setAuthorities(authoritySet);
+
+        UserDTO userDTO = new UserDTO(extendUser.getUser());
+
+        userService.updateUser(userDTO);
+
+
         if (extendUser.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         ExtendUser result = extendUserService.save(extendUser);
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, extendUser.getId().toString()))
             .body(result);
@@ -93,18 +150,13 @@ public class ExtendUserResource {
      *
 
      * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of extendUsers in body.
      */
     @GetMapping("/extend-users")
-    public ResponseEntity<List<ExtendUser>> getAllExtendUsers(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public ResponseEntity<List<ExtendUser>> getAllExtendUsers(Pageable pageable) {
         log.debug("REST request to get a page of ExtendUsers");
-        Page<ExtendUser> page;
-        if (eagerload) {
-            page = extendUserService.findAllWithEagerRelationships(pageable);
-        } else {
-            page = extendUserService.findAll(pageable);
-        }
+        Page<ExtendUser> page = extendUserService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

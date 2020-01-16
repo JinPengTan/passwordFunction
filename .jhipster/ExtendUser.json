@@ -14,9 +14,8 @@
         {
             "relationshipName": "profile",
             "otherEntityName": "profile",
-            "relationshipType": "many-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityField": "role",
-            "ownerSide": true,
             "otherEntityRelationshipName": "extendUser"
         }
     ],

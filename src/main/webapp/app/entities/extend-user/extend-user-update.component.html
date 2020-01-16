@@ -12,15 +12,16 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterApp.extendUser.user" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                    <select class="form-control" id="field_user" name="user" formControlName="user" [attr.disabled]="editForm.get('id').value">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{userOption.login}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label jhiTranslate="jhipsterApp.extendUser.profile" for="field_profiles">Profile</label>
-                    <select class="form-control" id="field_profiles" multiple name="profiles" formControlName="profiles">
-                        <option [ngValue]="getSelected(editForm.get('profiles')!.value, profileOption)" *ngFor="let profileOption of profiles; trackBy: trackById">{{profileOption.role}}</option>
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.extendUser.profile" for="field_profile">Profile</label>
+                    <select class="form-control" id="field_profile" name="profile" formControlName="profile">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="profileOption.id === editForm.get('profile')!.value?.id ? editForm.get('profile')!.value : profileOption" *ngFor="let profileOption of profiles; trackBy: trackById">{{profileOption.role}}</option>
                     </select>
                 </div>
             </div>

@@ -1,5 +1,4 @@
 package jwt.domain;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -29,8 +28,7 @@ public class Profile implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id"))
     private Set<Permission> permissions = new HashSet<>();
 
-    @ManyToMany(mappedBy = "profiles")
-    @JsonIgnore
+    @OneToMany(mappedBy = "profile")
     private Set<ExtendUser> extendUsers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -91,13 +89,13 @@ public class Profile implements Serializable {
 
     public Profile addExtendUser(ExtendUser extendUser) {
         this.extendUsers.add(extendUser);
-        extendUser.getProfiles().add(this);
+        extendUser.setProfile(this);
         return this;
     }
 
     public Profile removeExtendUser(ExtendUser extendUser) {
         this.extendUsers.remove(extendUser);
-        extendUser.getProfiles().remove(this);
+        extendUser.setProfile(null);
         return this;
     }
 

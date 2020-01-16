@@ -38,7 +38,7 @@
     -->
     <changeSet id="20200116031022-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/permission.csv"
+                  file="config/liquibase/data/authority.csv"
                   separator=";"
                   tableName="permission">
             <column name="id" type="numeric"/>

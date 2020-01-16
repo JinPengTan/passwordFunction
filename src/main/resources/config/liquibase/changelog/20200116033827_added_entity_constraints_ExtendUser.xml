@@ -14,17 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="extend_user_id"
-                                 baseTableName="extend_user_profile"
-                                 constraintName="fk_extend_user_profile_extend_user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="extend_user"/>
-
         <addForeignKeyConstraint baseColumnNames="profile_id"
-                                 baseTableName="extend_user_profile"
-                                 constraintName="fk_extend_user_profile_profile_id"
+                                 baseTableName="extend_user"
+                                 constraintName="fk_extend_user_profile_id"
                                  referencedColumnNames="id"
                                  referencedTableName="profile"/>
-        
+
     </changeSet>
 </databaseChangeLog>

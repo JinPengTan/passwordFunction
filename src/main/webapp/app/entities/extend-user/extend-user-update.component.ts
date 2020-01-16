@@ -29,7 +29,7 @@ export class ExtendUserUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     user: [],
-    profiles: []
+    profile: []
   });
 
   constructor(
@@ -68,7 +68,7 @@ export class ExtendUserUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: extendUser.id,
       user: extendUser.user,
-      profiles: extendUser.profiles
+      profile: extendUser.profile
     });
   }
 
@@ -91,7 +91,7 @@ export class ExtendUserUpdateComponent implements OnInit {
       ...new ExtendUser(),
       id: this.editForm.get(['id'])!.value,
       user: this.editForm.get(['user'])!.value,
-      profiles: this.editForm.get(['profiles'])!.value
+      profile: this.editForm.get(['profile'])!.value
     };
   }
 
@@ -113,16 +113,5 @@ export class ExtendUserUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
-  }
-
-  getSelected(selectedVals: IProfile[], option: IProfile): IProfile {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
   }
 }

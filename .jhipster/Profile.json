@@ -13,8 +13,7 @@
         {
             "relationshipName": "extendUser",
             "otherEntityName": "extendUser",
-            "relationshipType": "many-to-many",
-            "ownerSide": false,
+            "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "profile"
         }
     ],

@@ -20,6 +20,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
             <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="jhipsterApp.extendUser.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="profile.role"><span jhiTranslate="jhipsterApp.extendUser.profile">Profile</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -28,6 +29,11 @@
                 <td><a [routerLink]="['/extend-user', extendUser.id, 'view' ]">{{extendUser.id}}</a></td>
                 <td>
                     {{extendUser.user?.login}}
+                </td>
+                <td>
+                    <div *ngIf="extendUser.profile">
+                        <a [routerLink]="['/profile', extendUser.profile?.id, 'view' ]" >{{extendUser.profile?.role}}</a>
+                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group">
