@@ -8,6 +8,8 @@
       "entities": {
         "main": "實體",
         "cycle": "Cycle",
+        "profile": "Profile",
+        "permission": "Permission",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
