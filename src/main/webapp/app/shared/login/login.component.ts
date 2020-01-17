@@ -49,7 +49,7 @@ export class LoginModalComponent implements AfterViewInit {
       .login({
         username: this.loginForm.get('username')!.value,
         password: this.loginForm.get('password')!.value,
-        rememberMe: this.loginForm.get('rememberMe')!.value
+        rememberMe: false
       })
       .subscribe(
         () => {
@@ -62,10 +62,10 @@ export class LoginModalComponent implements AfterViewInit {
           ) {
             this.router.navigate(['']);
           }
-          if(sessionStorage.getItem('expired') == 'true') {
+          if (sessionStorage.getItem('expired') == 'true') {
             sessionStorage.removeItem('expired');
           }
-          if(sessionStorage.getItem('PasswordChecker') == 'true') {
+          if (sessionStorage.getItem('PasswordChecker') == 'true') {
             this.router.navigateByUrl('/account/password');
           }
         },
