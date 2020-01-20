@@ -7,9 +7,11 @@ import { ProfileDetailComponent } from './profile-detail.component';
 import { ProfileUpdateComponent } from './profile-update.component';
 import { ProfileDeleteDialogComponent } from './profile-delete-dialog.component';
 import { profileRoute } from './profile.route';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  imports: [JhipsterSharedModule, RouterModule.forChild(profileRoute)],
+  imports: [JhipsterSharedModule, RouterModule.forChild(profileRoute), MatOptionModule, MatSelectModule],
   declarations: [ProfileComponent, ProfileDetailComponent, ProfileUpdateComponent, ProfileDeleteDialogComponent],
   entryComponents: [ProfileDeleteDialogComponent]
 })
