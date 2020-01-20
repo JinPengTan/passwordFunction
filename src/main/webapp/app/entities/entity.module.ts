@@ -9,10 +9,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./cycle/cycle.module').then(m => m.JhipsterCycleModule)
       },
       {
-        path: 'profile',
-        loadChildren: () => import('./profile/profile.module').then(m => m.JhipsterProfileModule)
-      },
-      {
         path: 'permission',
         loadChildren: () => import('./permission/permission.module').then(m => m.JhipsterPermissionModule)
       },

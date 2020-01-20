@@ -42,7 +42,7 @@ export const extendUserRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_EXTENDUSER_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.extendUser.home.title'
     },
@@ -55,7 +55,7 @@ export const extendUserRoute: Routes = [
       extendUser: ExtendUserResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_EXTENDUSER_READ'],
       pageTitle: 'jhipsterApp.extendUser.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const extendUserRoute: Routes = [
       extendUser: ExtendUserResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_EXTENDUSER_ADD'],
       pageTitle: 'jhipsterApp.extendUser.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const extendUserRoute: Routes = [
       extendUser: ExtendUserResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_EXTENDUSER_UPDATE'],
       pageTitle: 'jhipsterApp.extendUser.home.title'
     },
     canActivate: [UserRouteAccessService]

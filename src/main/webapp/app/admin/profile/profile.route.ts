@@ -42,11 +42,11 @@ export const profileRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      //   authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PROFILE_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.profile.home.title'
-    }
-    // canActivate: [UserRouteAccessService]
+    },
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/view',
@@ -55,10 +55,10 @@ export const profileRoute: Routes = [
       profile: ProfileResolve
     },
     data: {
-      // authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PROFILE_READ'],
       pageTitle: 'jhipsterApp.profile.home.title'
-    }
-    // canActivate: [UserRouteAccessService]
+    },
+    canActivate: [UserRouteAccessService]
   },
   {
     path: 'new',
@@ -67,10 +67,10 @@ export const profileRoute: Routes = [
       profile: ProfileResolve
     },
     data: {
-      // authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PROFILE_ADD'],
       pageTitle: 'jhipsterApp.profile.home.title'
-    }
-    // canActivate: [UserRouteAccessService]
+    },
+    canActivate: [UserRouteAccessService]
   },
   {
     path: ':id/edit',
@@ -79,9 +79,9 @@ export const profileRoute: Routes = [
       profile: ProfileResolve
     },
     data: {
-      // authorities: ['ROLE_ADMIN'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PROFILE_UPDATE'],
       pageTitle: 'jhipsterApp.profile.home.title'
-    }
-    // canActivate: [UserRouteAccessService]
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];

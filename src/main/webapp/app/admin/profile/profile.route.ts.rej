@@ -1,0 +1,4 @@
+diff a/src/main/webapp/app/admin/profile/profile.route.ts b/src/main/webapp/app/admin/profile/profile.route.ts	(rejected hunks)
+@@ -45 +45 @@ export const profileRoute: Routes = [
+-    //   authorities: ['ROLE_ADMIN'],
++      //   authorities: ['ROLE_ADMIN'],

@@ -42,7 +42,7 @@ export const cycleRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER','ROLE_SUB_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_CYCLE_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.cycle.home.title'
     },
@@ -55,7 +55,7 @@ export const cycleRoute: Routes = [
       cycle: CycleResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_CYCLE_READ'],
       pageTitle: 'jhipsterApp.cycle.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const cycleRoute: Routes = [
       cycle: CycleResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_CYCLE_ADD'],
       pageTitle: 'jhipsterApp.cycle.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const cycleRoute: Routes = [
       cycle: CycleResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_CYCLE_UPDATE'],
       pageTitle: 'jhipsterApp.cycle.home.title'
     },
     canActivate: [UserRouteAccessService]

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IProfile } from 'app/shared/model/profile.model';
+import { IPermission } from 'app/shared/model/permission.model';
 
 type EntityResponseType = HttpResponse<IProfile>;
 type EntityArrayResponseType = HttpResponse<IProfile[]>;
@@ -30,6 +31,10 @@ export class ProfileService {
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IProfile[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
+
+  getPermission(): Observable<IPermission[]> {
+    return this.http.get<IPermission[]>(SERVER_API_URL + 'api/allPermissions');
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

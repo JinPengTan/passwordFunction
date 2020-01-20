@@ -9,9 +9,18 @@ import { ProfileDeleteDialogComponent } from './profile-delete-dialog.component'
 import { profileRoute } from './profile.route';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
-  imports: [JhipsterSharedModule, RouterModule.forChild(profileRoute), MatOptionModule, MatSelectModule],
+  imports: [
+    JhipsterSharedModule,
+    RouterModule.forChild(profileRoute),
+    MatOptionModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatAutocompleteModule
+  ],
   declarations: [ProfileComponent, ProfileDetailComponent, ProfileUpdateComponent, ProfileDeleteDialogComponent],
   entryComponents: [ProfileDeleteDialogComponent]
 })

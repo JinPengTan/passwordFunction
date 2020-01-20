@@ -6,8 +6,8 @@ import { JhiEventManager } from 'ng-jhipster';
 import { JhipsterTestModule } from '../../../test.module';
 import { MockEventManager } from '../../../helpers/mock-event-manager.service';
 import { MockActiveModal } from '../../../helpers/mock-active-modal.service';
-import { ProfileDeleteDialogComponent } from 'app/entities/profile/profile-delete-dialog.component';
-import { ProfileService } from 'app/entities/profile/profile.service';
+import { ProfileDeleteDialogComponent } from 'app/admin/profile/profile-delete-dialog.component';
+import { ProfileService } from 'app/admin/profile/profile.service';
 
 describe('Component Tests', () => {
   describe('Profile Management Delete Component', () => {

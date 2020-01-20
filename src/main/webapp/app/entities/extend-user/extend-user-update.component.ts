@@ -11,7 +11,7 @@ import { ExtendUserService } from './extend-user.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IProfile } from 'app/shared/model/profile.model';
-import { ProfileService } from 'app/entities/profile/profile.service';
+import { ProfileService } from 'app/admin/profile/profile.service';
 
 type SelectableEntity = IUser | IProfile;
 

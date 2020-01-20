@@ -42,7 +42,7 @@ export const permissionRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PERMISSION_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.permission.home.title'
     },
@@ -55,7 +55,7 @@ export const permissionRoute: Routes = [
       permission: PermissionResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PERMISSION_READ'],
       pageTitle: 'jhipsterApp.permission.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const permissionRoute: Routes = [
       permission: PermissionResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PERMISSION_ADD'],
       pageTitle: 'jhipsterApp.permission.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const permissionRoute: Routes = [
       permission: PermissionResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_PERMISSION_UPDATE'],
       pageTitle: 'jhipsterApp.permission.home.title'
     },
     canActivate: [UserRouteAccessService]

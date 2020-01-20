@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,7 @@ public class CycleResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/cycles")
+    @PreAuthorize("hasAuthority('ROLE_CYCLE_ADD')"  + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Cycle> createCycle(@RequestBody Cycle cycle) throws URISyntaxException {
         log.debug("REST request to save Cycle : {}", cycle);
         if (cycle.getId() != null) {
@@ -73,6 +75,7 @@ public class CycleResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/cycles")
+    @PreAuthorize("hasAuthority('ROLE_CYCLE_UPDATE')"  + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Cycle> updateCycle(@RequestBody Cycle cycle) throws URISyntaxException {
         log.debug("REST request to update Cycle : {}", cycle);
         if (cycle.getId() == null) {
@@ -93,6 +96,7 @@ public class CycleResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cycles in body.
      */
     @GetMapping("/cycles")
+    @PreAuthorize("hasAuthority('ROLE_CYCLE_READ')"  + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<Cycle>> getAllCycles(Pageable pageable) {
         log.debug("REST request to get a page of Cycles");
         Page<Cycle> page = cycleService.findAll(pageable);
@@ -107,6 +111,7 @@ public class CycleResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the cycle, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/cycles/{id}")
+    @PreAuthorize("hasAuthority('ROLE_CYCLE_READ')"  + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Cycle> getCycle(@PathVariable Long id) {
         log.debug("REST request to get Cycle : {}", id);
         Optional<Cycle> cycle = cycleService.findOne(id);
@@ -120,6 +125,7 @@ public class CycleResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/cycles/{id}")
+    @PreAuthorize("hasAuthority('ROLE_CYCLE_DELETE')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteCycle(@PathVariable Long id) {
         log.debug("REST request to delete Cycle : {}", id);
         cycleService.delete(id);

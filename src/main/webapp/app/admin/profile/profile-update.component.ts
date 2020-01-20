@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,6 +11,11 @@ import { ProfileService } from './profile.service';
 import { IPermission } from 'app/shared/model/permission.model';
 import { PermissionService } from 'app/entities/permission/permission.service';
 
+export interface PermissionGroup {
+  name: string;
+  permit: IPermission[];
+}
+
 @Component({
   selector: 'jhi-profile-update',
   templateUrl: './profile-update.component.html'
@@ -19,6 +24,8 @@ export class ProfileUpdateComponent implements OnInit {
   isSaving = false;
 
   permissions: IPermission[] = [];
+  permitList: IPermission[] = [];
+  optionList: PermissionGroup[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -46,6 +53,29 @@ export class ProfileUpdateComponent implements OnInit {
         )
         .subscribe((resBody: IPermission[]) => (this.permissions = resBody));
     });
+
+    this.profileService.getPermission().subscribe(data => {
+      this.permitList = data;
+      this.optionList.push({ name: 'CYCLE', permit: [] });
+      this.optionList.push({ name: 'PERMISSION', permit: [] });
+      this.optionList.push({ name: 'EXTENDUSER', permit: [] });
+      this.optionList.push({ name: 'PROFILE', permit: [] });
+      this.optionList.push({ name: 'TOKEN', permit: [] });
+      this.optionList.push({ name: 'HISTORY', permit: [] });
+      this.optionList.push({ name: 'ROLE', permit: [] });
+
+      this.permitList.forEach(permit => {
+        if (permit.name.includes('CYCLE')) this.optionList[0].permit.push(permit);
+        else if (permit.name.includes('PERMISSION')) this.optionList[1].permit.push(permit);
+        else if (permit.name.includes('EXTENDUSER')) this.optionList[2].permit.push(permit);
+        else if (permit.name.includes('PROFILE')) this.optionList[3].permit.push(permit);
+        else if (permit.name.includes('TOKEN')) this.optionList[4].permit.push(permit);
+        else if (permit.name.includes('HISTORY')) this.optionList[5].permit.push(permit);
+        else this.optionList[6].permit.push(permit);
+      });
+    });
+
+    console.log(this.optionList);
   }
 
   updateForm(profile: IProfile): void {

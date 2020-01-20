@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,7 @@ public class ProfileResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/profiles")
+    @PreAuthorize("hasAuthority('ROLE_PROFILE_ADD')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Profile> createProfile(@RequestBody Profile profile) throws URISyntaxException {
         log.debug("REST request to save Profile : {}", profile);
         if (profile.getId() != null) {
@@ -73,6 +75,7 @@ public class ProfileResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/profiles")
+    @PreAuthorize("hasAuthority('ROLE_PROFILE_UPDATE')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Profile> updateProfile(@RequestBody Profile profile) throws URISyntaxException {
         log.debug("REST request to update Profile : {}", profile);
         if (profile.getId() == null) {
@@ -93,6 +96,7 @@ public class ProfileResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of profiles in body.
      */
     @GetMapping("/profiles")
+    @PreAuthorize("hasAuthority('ROLE_PROFILE_READ')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<Profile>> getAllProfiles(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Profiles");
         Page<Profile> page;
@@ -112,6 +116,7 @@ public class ProfileResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the profile, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/profiles/{id}")
+    @PreAuthorize("hasAuthority('ROLE_PROFILE_READ')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Profile> getProfile(@PathVariable Long id) {
         log.debug("REST request to get Profile : {}", id);
         Optional<Profile> profile = profileService.findOne(id);
@@ -125,6 +130,7 @@ public class ProfileResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/profiles/{id}")
+    @PreAuthorize("hasAuthority('ROLE_PROFILE_DELETE')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteProfile(@PathVariable Long id) {
         log.debug("REST request to delete Profile : {}", id);
         profileService.delete(id);

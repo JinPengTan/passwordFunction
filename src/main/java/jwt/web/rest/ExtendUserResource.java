@@ -22,6 +22,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +61,7 @@ public class ExtendUserResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/extend-users")
+    @PreAuthorize("hasAuthority('ROLE_EXTENDUSER_ADD')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<ExtendUser> createExtendUser(@RequestBody ExtendUser extendUser) throws URISyntaxException {
         log.debug("REST request to save ExtendUser : {}", extendUser);
 
@@ -85,6 +87,7 @@ public class ExtendUserResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/extend-users")
+    @PreAuthorize("hasAuthority('ROLE_EXTENDUSER_UPDATE')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<ExtendUser> updateExtendUser(@RequestBody ExtendUser extendUser) throws URISyntaxException {
         log.debug("REST request to update ExtendUser : {}", extendUser);
         if (extendUser.getId() == null) {
@@ -106,6 +109,7 @@ public class ExtendUserResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of extendUsers in body.
      */
     @GetMapping("/extend-users")
+    @PreAuthorize("hasAuthority('ROLE_EXTENDUSER_READ')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<ExtendUser>> getAllExtendUsers(Pageable pageable) {
         log.debug("REST request to get a page of ExtendUsers");
         Page<ExtendUser> page = extendUserService.findAll(pageable);
@@ -120,6 +124,7 @@ public class ExtendUserResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the extendUser, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/extend-users/{id}")
+    @PreAuthorize("hasAuthority('ROLE_EXTENDUSER_READ')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<ExtendUser> getExtendUser(@PathVariable Long id) {
         log.debug("REST request to get ExtendUser : {}", id);
         Optional<ExtendUser> extendUser = extendUserService.findOne(id);
@@ -133,6 +138,7 @@ public class ExtendUserResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/extend-users/{id}")
+    @PreAuthorize("hasAuthority('ROLE_EXTENDUSER_DELETE')"  + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteExtendUser(@PathVariable Long id) {
         log.debug("REST request to delete ExtendUser : {}", id);
         extendUserService.delete(id);

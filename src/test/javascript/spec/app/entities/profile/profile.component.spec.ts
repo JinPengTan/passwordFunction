@@ -4,8 +4,8 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
 import { JhipsterTestModule } from '../../../test.module';
-import { ProfileComponent } from 'app/entities/profile/profile.component';
-import { ProfileService } from 'app/entities/profile/profile.service';
+import { ProfileComponent } from 'app/admin/profile/profile.component';
+import { ProfileService } from 'app/admin/profile/profile.service';
 import { Profile } from 'app/shared/model/profile.model';
 
 describe('Component Tests', () => {

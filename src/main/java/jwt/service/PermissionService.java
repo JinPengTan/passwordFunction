@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -71,5 +72,10 @@ public class PermissionService {
     public void delete(Long id) {
         log.debug("Request to delete Permission : {}", id);
         permissionRepository.deleteById(id);
+    }
+
+    public List<Permission> findAllPermissions() {
+        log.debug("Request to get all Permissions");
+        return permissionRepository.findAllPermission();
     }
 }

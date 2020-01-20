@@ -4,8 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { JhipsterTestModule } from '../../../test.module';
-import { ProfileUpdateComponent } from 'app/entities/profile/profile-update.component';
-import { ProfileService } from 'app/entities/profile/profile.service';
+import { ProfileUpdateComponent } from 'app/admin/profile/profile-update.component';
+import { ProfileService } from 'app/admin/profile/profile.service';
 import { Profile } from 'app/shared/model/profile.model';
 
 describe('Component Tests', () => {

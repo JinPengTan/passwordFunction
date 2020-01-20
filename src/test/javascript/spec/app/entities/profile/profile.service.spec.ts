@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { take, map } from 'rxjs/operators';
-import { ProfileService } from 'app/entities/profile/profile.service';
+import { ProfileService } from 'app/admin/profile/profile.service';
 import { IProfile, Profile } from 'app/shared/model/profile.model';
 
 describe('Service Tests', () => {

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { JhipsterTestModule } from '../../../test.module';
-import { ProfileDetailComponent } from 'app/entities/profile/profile-detail.component';
+import { ProfileDetailComponent } from 'app/admin/profile/profile-detail.component';
 import { Profile } from 'app/shared/model/profile.model';
 
 describe('Component Tests', () => {

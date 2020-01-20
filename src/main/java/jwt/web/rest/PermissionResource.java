@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,7 @@ public class PermissionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/permissions")
+    @PreAuthorize("hasAuthority('ROLE_PERMISSION_ADD')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Permission> createPermission(@RequestBody Permission permission) throws URISyntaxException {
         log.debug("REST request to save Permission : {}", permission);
         if (permission.getId() != null) {
@@ -73,6 +75,7 @@ public class PermissionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/permissions")
+    @PreAuthorize("hasAuthority('ROLE_PERMISSION_UPDATE')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Permission> updatePermission(@RequestBody Permission permission) throws URISyntaxException {
         log.debug("REST request to update Permission : {}", permission);
         if (permission.getId() == null) {
@@ -93,11 +96,19 @@ public class PermissionResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of permissions in body.
      */
     @GetMapping("/permissions")
+    @PreAuthorize("hasAuthority('ROLE_PERMISSION_READ')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<Permission>> getAllPermissions(Pageable pageable) {
         log.debug("REST request to get a page of Permissions");
         Page<Permission> page = permissionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/allPermissions")
+    @PreAuthorize("hasAuthority('ROLE_PERMISSION_READ')" + " || hasAuthority('ROLE_ADMIN')")
+    public List<Permission> getAllPermissions() {
+        log.debug("REST request to get a list of Permissions");
+        return permissionService.findAllPermissions();
     }
 
     /**
@@ -107,6 +118,7 @@ public class PermissionResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the permission, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/permissions/{id}")
+    @PreAuthorize("hasAuthority('ROLE_PERMISSION_READ')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Permission> getPermission(@PathVariable Long id) {
         log.debug("REST request to get Permission : {}", id);
         Optional<Permission> permission = permissionService.findOne(id);
@@ -120,6 +132,7 @@ public class PermissionResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/permissions/{id}")
+    @PreAuthorize("hasAuthority('ROLE_PERMISSION_DELETE')" + " || hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Void> deletePermission(@PathVariable Long id) {
         log.debug("REST request to delete Permission : {}", id);
         permissionService.delete(id);
