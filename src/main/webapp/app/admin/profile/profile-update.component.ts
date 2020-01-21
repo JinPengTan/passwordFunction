@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -30,7 +30,7 @@ export class ProfileUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     role: [],
-    permissions: []
+    permissions: this.fb.array([])
   });
 
   constructor(
@@ -76,6 +76,31 @@ export class ProfileUpdateComponent implements OnInit {
     });
 
     console.log(this.optionList);
+  }
+
+  onCheckboxChange(e) {
+    const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
+
+    if (e.target.checked) {
+      for (let i = 0; i < this.permitList.length; i++) {
+        console.log(this.permitList[i].name + ' /////// ' + e.target.value);
+        if (this.permitList[i].name === e.target.value) {
+          checkArray.push(new FormControl(this.permitList[i]));
+          console.log(this.permitList[i]);
+          return;
+        }
+      }
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach(item => {
+        console.log(this.permitList[i]);
+        if (item.value == e.target.name) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
   }
 
   updateForm(profile: IProfile): void {
