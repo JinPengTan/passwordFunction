@@ -23,8 +23,10 @@ export class ExtendUserUpdateComponent implements OnInit {
   isSaving = false;
 
   users: IUser[] = [];
+  userList: IUser[] = [];
 
   profiles: IProfile[] = [];
+  profileList: IProfile[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -62,6 +64,9 @@ export class ExtendUserUpdateComponent implements OnInit {
         )
         .subscribe((resBody: IProfile[]) => (this.profiles = resBody));
     });
+
+    this.profileService.getProfiles().subscribe(data => (this.profileList = data));
+    this.userService.getUsers().subscribe(data => (this.userList = data));
   }
 
   updateForm(extendUser: IExtendUser): void {

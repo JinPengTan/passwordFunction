@@ -40,4 +40,8 @@ export class ProfileService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+
+  getProfiles(): Observable<IProfile[]> {
+    return this.http.get<IProfile[]>(SERVER_API_URL + 'api/allProfiles');
+  }
 }

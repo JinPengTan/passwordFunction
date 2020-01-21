@@ -109,6 +109,12 @@ public class ProfileResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/allProfiles")
+    @PreAuthorize("hasAuthority('ROLE_PROFILE_READ')" + " || hasAuthority('ROLE_ADMIN')")
+    public List<Profile> getAllProfiles() {
+        return profileService.getAll();
+    }
+
     /**
      * {@code GET  /profiles/:id} : get the "id" profile.
      *

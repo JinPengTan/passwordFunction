@@ -28,15 +28,9 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
                     <li>
-                        <a class="dropdown-item" routerLink="cycle" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="admin/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.cycle">Cycle</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="permission" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.permission">Permission</span>
+                            <span jhiTranslate="global.menu.entities.profile">Profile</span>
                         </a>
                     </li>
                     <li>
@@ -62,12 +56,18 @@
                             <span jhiTranslate="global.menu.admin.userManagement">User management</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="admin/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.profile">Profile</span>
-                        </a>
-                    </li>
+<!--                    <li>-->
+<!--                        <a class="dropdown-item" routerLink="cycle" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+<!--                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>-->
+<!--                            <span jhiTranslate="global.menu.entities.cycle">Cycle</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a class="dropdown-item" routerLink="permission" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+<!--                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>-->
+<!--                            <span jhiTranslate="global.menu.entities.permission">Permission</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
                     <li>
                         <a class="dropdown-item" routerLink="admin/metrics" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="tachometer-alt" fixedWidth="true"></fa-icon>

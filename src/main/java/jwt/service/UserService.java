@@ -66,6 +66,10 @@ public class UserService {
             });
     }
 
+    public List<User> getUsers() {
+        return userRepository.findAllUser();
+    }
+
     public Optional<User> completePasswordReset(String newPassword, String key) {
         log.debug("Reset user password for reset key {}", key);
         return userRepository.findOneByResetKey(key)
