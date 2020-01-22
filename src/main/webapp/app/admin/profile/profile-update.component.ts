@@ -24,7 +24,9 @@ export class ProfileUpdateComponent implements OnInit {
   isSaving = false;
 
   permissions: IPermission[] = [];
+  //Loop all permission
   permitList: IPermission[] = [];
+  //Category
   optionList: PermissionGroup[] = [];
 
   editForm = this.fb.group({
@@ -42,6 +44,13 @@ export class ProfileUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ profile }) => {
+      //Push data into Form
+      if (profile) {
+        for (let permit in profile.permissions) {
+          const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
+          checkArray.push(new FormControl(permit));
+        }
+      }
       this.updateForm(profile);
 
       this.permissionService
@@ -74,8 +83,6 @@ export class ProfileUpdateComponent implements OnInit {
         else this.optionList[6].permit.push(permit);
       });
     });
-
-    console.log(this.optionList);
   }
 
   onCheckboxChange(e) {
@@ -83,23 +90,24 @@ export class ProfileUpdateComponent implements OnInit {
 
     if (e.target.checked) {
       for (let i = 0; i < this.permitList.length; i++) {
-        console.log(this.permitList[i].name + ' /////// ' + e.target.value);
         if (this.permitList[i].name === e.target.value) {
           checkArray.push(new FormControl(this.permitList[i]));
-          console.log(this.permitList[i]);
+          console.log('PUSH' + checkArray.length);
           return;
         }
       }
+      console.log('PUSH' + checkArray.length);
     } else {
       let i: number = 0;
       checkArray.controls.forEach(item => {
-        console.log(this.permitList[i]);
-        if (item.value == e.target.name) {
+        if (item.value.name === e.target.value) {
           checkArray.removeAt(i);
+          console.log('rEMOVE' + i + checkArray.value);
           return;
         }
         i++;
       });
+      console.log('rEMOVE' + checkArray.length);
     }
   }
 
@@ -163,5 +171,16 @@ export class ProfileUpdateComponent implements OnInit {
       }
     }
     return option;
+  }
+
+  getChecked(selectedVals: IPermission[], option: IPermission): boolean {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
