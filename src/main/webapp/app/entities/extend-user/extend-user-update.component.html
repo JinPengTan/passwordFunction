@@ -14,7 +14,7 @@
                     <mat-label>User</mat-label>
                     <mat-select id="field_user" formControlName="user" [disabled]="editForm.get('id').value">
                         <mat-option [value]="null"></mat-option>
-                        <mat-option [value]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of userList; trackBy: trackById">{{userOption.login}}</mat-option>
+                        <mat-option [value]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of userList">{{userOption.login}}</mat-option>
                     </mat-select>
                 </div>
 
@@ -22,7 +22,7 @@
                     <mat-label>Profile</mat-label>
                     <mat-select id="field_profile" formControlName="profile">
                         <mat-option [value]="null"></mat-option>
-                        <mat-option [value]="profileOption.id === editForm.get('profile')!.value?.id ? editForm.get('profile')!.value : profileOption" *ngFor="let profileOption of profileList; trackBy: trackById">{{profileOption.role}}</mat-option>
+                        <mat-option [value]="profileOption.id === editForm.get('profile')!.value?.id ? editForm.get('profile')!.value : profileOption" *ngFor="let profileOption of profileList;">{{profileOption.role}}</mat-option>
                     </mat-select>
                 </div>
                 <br>

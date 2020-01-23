@@ -72,12 +72,28 @@ public class UserService {
 
     public Optional<User> completePasswordReset(String newPassword, String key) {
         log.debug("Reset user password for reset key {}", key);
+
+        Optional<User> usr = userRepository.findOneByResetKey(key);
+        usr.ifPresent( user -> {
+            // Save new password Cycle record
+            Cycle cycle = new Cycle();
+            cycle.setCycleCount(cycleRepository.countByUser(user) + 1);
+            cycle.setCycleDatetime(LocalDate.now());
+            cycle.setCyclePassword(passwordEncoder.encode(newPassword));
+            cycle.setUser(user);
+            cycleRepository.save(cycle);
+            log.debug("Created Information for User: {}", user);
+        });
+
         return userRepository.findOneByResetKey(key)
             .filter(user -> user.getResetDate().isAfter(Instant.now().minusSeconds(86400)))
             .map(user -> {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
-                user.setResetDate(null);
+                user.setResetDate(Instant.now());
+                Set<Authority> authorities = new HashSet<>();
+                authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+                user.setAuthorities(authorities);
                 return user;
             });
     }

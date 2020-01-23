@@ -29,7 +29,7 @@ public class Cycle implements Serializable, Comparator<Cycle> {
     @Column(name = "cycle_password")
     private String cyclePassword;
 
-    @ManyToOne
+    @ManyToOne( )
     @JsonIgnoreProperties("cycles")
     private User user;
 

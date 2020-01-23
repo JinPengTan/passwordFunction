@@ -117,6 +117,13 @@ public class ExtendUserResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/allExtendUsers")
+    @PreAuthorize("hasAuthority('ROLE_EXTENDUSER_READ')" + " || hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_EXTENDUSER_READ')")
+    public List<ExtendUser> getAllExtendUsers() {
+        log.debug("REST request to get all ExtendUsers");
+        return extendUserService.findExtendUsers();
+    }
+
     /**
      * {@code GET  /extend-users/:id} : get the "id" extendUser.
      *

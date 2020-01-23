@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
-import { IExtendUser } from 'app/shared/model/extend-user.model';
+import { ExtendUser, IExtendUser } from 'app/shared/model/extend-user.model';
 
 type EntityResponseType = HttpResponse<IExtendUser>;
 type EntityArrayResponseType = HttpResponse<IExtendUser[]>;
@@ -34,5 +34,9 @@ export class ExtendUserService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  findAll(): Observable<ExtendUser[]> {
+    return this.http.get<ExtendUser[]>(SERVER_API_URL + 'api/allExtendUsers');
   }
 }

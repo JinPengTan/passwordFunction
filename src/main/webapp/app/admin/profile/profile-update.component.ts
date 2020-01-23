@@ -85,6 +85,16 @@ export class ProfileUpdateComponent implements OnInit {
     });
   }
 
+  filterWord(word: string): string {
+    if (word.includes('CYCLE')) return word.substring(11);
+    else if (word.includes('PERMISSION')) return word.substring(16);
+    else if (word.includes('EXTENDUSER')) return word.substring(16);
+    else if (word.includes('PROFILE')) return word.substring(13);
+    else if (word.includes('TOKEN')) return word.substring(11);
+    else if (word.includes('HISTORY')) return word.substring(13);
+    else return word.substring(5);
+  }
+
   onCheckboxChange(e) {
     const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
 
@@ -110,6 +120,31 @@ export class ProfileUpdateComponent implements OnInit {
       console.log('rEMOVE' + checkArray.length);
     }
   }
+
+  // onCheckboxAllow(e) {
+  //   console.log(e);
+  //   const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
+  //   for (let i = 0; i < this.permitList.length; i++) {
+  //     if (this.permitList[i].name === e.value) {
+  //       checkArray.push(new FormControl(this.permitList[i]));
+  //       console.log('PUSH' + checkArray.length);
+  //       return;
+  //     }
+  //   }
+  // }
+  //
+  // onCheckboxDeny(e) {
+  //   console.log(e);
+  //   const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
+  //   let i: number = 0;
+  //   checkArray.controls.forEach(item => {
+  //     if (item.value.id === e.value) {
+  //       checkArray.removeAt(i);
+  //       return;
+  //     }
+  //     i++;
+  //   });
+  // }
 
   updateForm(profile: IProfile): void {
     this.editForm.patchValue({
@@ -158,20 +193,20 @@ export class ProfileUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IPermission): any {
-    return item.id;
-  }
-
-  getSelected(selectedVals: IPermission[], option: IPermission): IPermission {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
-  }
+  // trackById(index: number, item: IPermission): any {
+  //   return item.id;
+  // }
+  //
+  // getSelected(selectedVals: IPermission[], option: IPermission): IPermission {
+  //   if (selectedVals) {
+  //     for (let i = 0; i < selectedVals.length; i++) {
+  //       if (option.id === selectedVals[i].id) {
+  //         return selectedVals[i];
+  //       }
+  //     }
+  //   }
+  //   return option;
+  // }
 
   getChecked(selectedVals: IPermission[], option: IPermission): boolean {
     if (selectedVals) {

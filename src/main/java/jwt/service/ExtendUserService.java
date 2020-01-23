@@ -68,6 +68,11 @@ public class ExtendUserService {
         return extendUserRepository.findAll(pageable);
     }
 
+    public List<ExtendUser> findExtendUsers() {
+        log.debug("Request to get all ExtendUsers");
+        return extendUserRepository.findAllExtendUsers();
+    }
+
 
     /**
      * Get one extendUser by id.
@@ -90,4 +95,5 @@ public class ExtendUserService {
         log.debug("Request to delete ExtendUser : {}", id);
         extendUserRepository.deleteById(id);
     }
+
 }

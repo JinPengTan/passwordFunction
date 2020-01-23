@@ -66,7 +66,19 @@ export class ExtendUserUpdateComponent implements OnInit {
     });
 
     this.profileService.getProfiles().subscribe(data => (this.profileList = data));
-    this.userService.getUsers().subscribe(data => (this.userList = data));
+    this.userService.getUsers().subscribe(data => {
+      this.userList = data;
+      this.extendUserService.findAll().subscribe(extend => {
+        for (let i = 0; i < extend.length; i++) {
+          for (let j = 0; j < this.userList.length; j++) {
+            if (extend[i].id === this.userList[j].id) {
+              this.userList.splice(j, 1);
+              j--;
+            }
+          }
+        }
+      });
+    });
   }
 
   updateForm(extendUser: IExtendUser): void {

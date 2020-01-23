@@ -17,20 +17,43 @@
                            formControlName="role"/>
                 </div>
 
-                <div>
-                    <mat-label>Permission</mat-label>
-                    <mat-select formControlName="permissions" multiple>
-                        <mat-optgroup *ngFor="let group of optionList" [label]="group.name">
-                        <mat-option *ngFor="let permissionOption of group.permit" [value]="getSelected(editForm.get('permissions')!.value,permissionOption)">{{permissionOption.name.substr(5,100)}}</mat-option>
-                        </mat-optgroup>
-                    </mat-select>
-                </div>
+<!--                <div>-->
+<!--                    <h5>Permission</h5>-->
+<!--                    <div *ngFor="let group of optionList" style="margin-top: 10px; margin-bottom: 10px">-->
+<!--                        <h4>{{group.name}}</h4>-->
+<!--                        <div *ngFor=" let permitOption of group.permit; let i = index">-->
+<!--                            <mat-radio-group >-->
+<!--                                {{permitOption.name | slice: 5}}-->
+<!--                                <mat-radio-button style="margin-left: 50px;" (change)="onCheckboxAllow($event)" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name">Allow</mat-radio-button>-->
+<!--                                <mat-radio-button style="margin-left: 50px;" (change)="onCheckboxDeny($event)" [checked]="!(getChecked(editForm.get('permissions')!.value, permitOption))" [value]="permitOption.id">Deny</mat-radio-button>-->
+<!--                                -->
+<!--                            </mat-radio-group>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div *ngFor="let permitOption of permitList; let i = index">
-                    <label>
-                        <input type="checkbox" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name" (change)="onCheckboxChange($event)" />
-                        {{permitOption.name}}
-                    </label>
+<!--                <div *ngFor="let permitOption of permitList; let i = index">-->
+<!--                    <label>-->
+<!--                        <input type="checkbox" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name" (change)="onCheckboxChange($event)" />-->
+<!--                        {{permitOption.name}}-->
+<!--                    </label>-->
+<!--                </div>-->
+
+
+                <div>
+                    <h3>Permission</h3>
+                    <div *ngFor="let group of optionList" style="margin-top: 20px; margin-bottom: 20px">
+                        <h4>{{group.name}}</h4>
+                        <div style="margin-right: 90px;" class="custom-control custom-checkbox">
+                            <label *ngFor=" let permitOption of group.permit; let i = index">
+                                <input  type="checkbox" class="custom-control-input" [id]="permitOption.name+i" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name" (change)="onCheckboxChange($event)" />
+                                <label class="custom-control-label" [for]="permitOption.name+i" style="margin-right: 110px;">{{filterWord(permitOption.name)}}</label>
+                            </label>
+<!--                        <mat-radio-group>-->
+<!--                           <mat-radio-button *ngFor=" let permitOption of group.permit; let i = index" style="margin-left: 50px;" (change)="onCheckboxAllow($event)" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name">ADD</mat-radio-button>-->
+<!--                        </mat-radio-group>-->
+                        </div>
+                    </div>
                 </div>
 
                 <br>
