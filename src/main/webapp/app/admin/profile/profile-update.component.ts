@@ -69,8 +69,10 @@ export class ProfileUpdateComponent implements OnInit {
       this.optionList.push({ name: 'PERMISSION', permit: [] });
       this.optionList.push({ name: 'EXTENDUSER', permit: [] });
       this.optionList.push({ name: 'PROFILE', permit: [] });
+      this.optionList.push({ name: 'UNIQUETOKEN', permit: [] });
       this.optionList.push({ name: 'TOKEN', permit: [] });
       this.optionList.push({ name: 'HISTORY', permit: [] });
+      this.optionList.push({ name: 'APIKEY', permit: [] });
       this.optionList.push({ name: 'ROLE', permit: [] });
       if (this.permitList.length != 0) {
         this.permitList.forEach(permit => {
@@ -83,10 +85,14 @@ export class ProfileUpdateComponent implements OnInit {
           // @ts-ignore
           else if (permit.name.includes('PROFILE')) this.optionList[3].permit.push(permit);
           // @ts-ignore
-          else if (permit.name.includes('TOKEN')) this.optionList[4].permit.push(permit);
+          else if (permit.name.includes('UNIQUETOKEN')) this.optionList[4].permit.push(permit);
           // @ts-ignore
-          else if (permit.name.includes('HISTORY')) this.optionList[5].permit.push(permit);
-          else this.optionList[6].permit.push(permit);
+          else if (permit.name.includes('TOKEN')) this.optionList[5].permit.push(permit);
+          // @ts-ignore
+          else if (permit.name.includes('HISTORY')) this.optionList[6].permit.push(permit);
+          // @ts-ignore
+          else if (permit.name.includes('APIKEY')) this.optionList[7].permit.push(permit);
+          else this.optionList[8].permit.push(permit);
         });
       }
     });
@@ -97,8 +103,10 @@ export class ProfileUpdateComponent implements OnInit {
     else if (word.includes('PERMISSION')) return word.substring(16);
     else if (word.includes('EXTENDUSER')) return word.substring(16);
     else if (word.includes('PROFILE')) return word.substring(13);
+    else if (word.includes('UNIQUETOKEN')) return word.substring(17);
     else if (word.includes('TOKEN')) return word.substring(11);
     else if (word.includes('HISTORY')) return word.substring(13);
+    else if (word.includes('APIKEY')) return word.substring(12);
     else return word.substring(5);
   }
 
