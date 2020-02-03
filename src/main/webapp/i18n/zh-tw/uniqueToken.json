@@ -1,0 +1,23 @@
+{
+  "jhipsterApp": {
+    "uniqueToken": {
+      "home": {
+        "title": "Unique Tokens",
+        "createLabel": "建立一筆新的 Unique Token",
+        "createOrEditLabel": "建立或編輯 Unique Token",
+        "notFound": "No Unique Tokens found"
+      },
+      "created": "新的 Unique Token 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Unique Token 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Unique Token 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Unique Token {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Unique Token"
+      },
+      "walletId": "Wallet Id",
+      "tpan": "Tpan"
+    }
+  }
+}

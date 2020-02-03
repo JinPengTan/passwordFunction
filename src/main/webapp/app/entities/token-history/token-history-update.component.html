@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-token-history-heading" jhiTranslate="jhipsterApp.tokenHistory.home.createOrEditLabel">Create or edit a Token History</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.tpan" for="field_tpan">Tpan</label>
+                    <input type="text" class="form-control" name="tpan" id="field_tpan"
+                           formControlName="tpan"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.hashKey" for="field_hashKey">Hash Key</label>
+                    <input type="text" class="form-control" name="hashKey" id="field_hashKey"
+                           formControlName="hashKey"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.tokenExpiry" for="field_tokenExpiry">Token Expiry</label>
+                    <input type="text" class="form-control" name="tokenExpiry" id="field_tokenExpiry"
+                           formControlName="tokenExpiry"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.tokenStatus" for="field_tokenStatus">Token Status</label>
+                    <input type="text" class="form-control" name="tokenStatus" id="field_tokenStatus"
+                           formControlName="tokenStatus"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.maskPan" for="field_maskPan">Mask Pan</label>
+                    <input type="text" class="form-control" name="maskPan" id="field_maskPan"
+                           formControlName="maskPan"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.enPan" for="field_enPan">En Pan</label>
+                    <input type="text" class="form-control" name="enPan" id="field_enPan"
+                           formControlName="enPan"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.expiryDate" for="field_expiryDate">Expiry Date</label>
+                    <input type="text" class="form-control" name="expiryDate" id="field_expiryDate"
+                           formControlName="expiryDate"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.trId" for="field_trId">Tr Id</label>
+                    <input type="text" class="form-control" name="trId" id="field_trId"
+                           formControlName="trId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.version" for="field_version">Version</label>
+                    <input type="number" class="form-control" name="version" id="field_version"
+                           formControlName="version"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.tokenHistory.historyDt" for="field_historyDt">History Dt</label>
+                    <div class="d-flex">
+                        <input id="field_historyDt" type="datetime-local" class="form-control" name="historyDt" formControlName="historyDt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

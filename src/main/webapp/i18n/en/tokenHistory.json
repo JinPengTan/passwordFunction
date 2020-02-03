@@ -1,0 +1,31 @@
+{
+  "jhipsterApp": {
+    "tokenHistory": {
+      "home": {
+        "title": "Token Histories",
+        "createLabel": "Create a new Token History",
+        "createOrEditLabel": "Create or edit a Token History",
+        "notFound": "No Token Histories found"
+      },
+      "created": "A new Token History is created with identifier {{ param }}",
+      "updated": "A Token History is updated with identifier {{ param }}",
+      "deleted": "A Token History is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Token History {{ id }}?"
+      },
+      "detail": {
+        "title": "Token History"
+      },
+      "tpan": "Tpan",
+      "hashKey": "Hash Key",
+      "tokenExpiry": "Token Expiry",
+      "tokenStatus": "Token Status",
+      "maskPan": "Mask Pan",
+      "enPan": "En Pan",
+      "expiryDate": "Expiry Date",
+      "trId": "Tr Id",
+      "version": "Version",
+      "historyDt": "History Dt"
+    }
+  }
+}

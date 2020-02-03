@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "tpan",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hashKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tokenExpiry",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tokenStatus",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "maskPan",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "enPan",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "expiryDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "trId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "version",
+            "fieldType": "Integer",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "historyDt",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20200203072707",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "token_history",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="token">
+            <h2><span jhiTranslate="jhipsterApp.token.detail.title">Token</span> {{token.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhipsterApp.token.walletId">Wallet Id</span></dt>
+                <dd>
+                    <span>{{token.walletId}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.tpan">Tpan</span></dt>
+                <dd>
+                    <span>{{token.tpan}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.hashKey">Hash Key</span></dt>
+                <dd>
+                    <span>{{token.hashKey}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.tokenExpiry">Token Expiry</span></dt>
+                <dd>
+                    <span>{{token.tokenExpiry}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.tokenStatus">Token Status</span></dt>
+                <dd>
+                    <span>{{token.tokenStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.maskPan">Mask Pan</span></dt>
+                <dd>
+                    <span>{{token.maskPan}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.enPan">En Pan</span></dt>
+                <dd>
+                    <span>{{token.enPan}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.expiryDate">Expiry Date</span></dt>
+                <dd>
+                    <span>{{token.expiryDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.token.version">Version</span></dt>
+                <dd>
+                    <span>{{token.version}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/token', token.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
