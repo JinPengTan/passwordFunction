@@ -195,3 +195,8 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [protractor]: https://angular.github.io/protractor/
 [leaflet]: https://leafletjs.com/
 [definitelytyped]: https://definitelytyped.org/
+
+
+NOTE: 
+Set cycle DB foreign key options both to Cascade 
+Set extendUser DB foreign key options both to Cascade
