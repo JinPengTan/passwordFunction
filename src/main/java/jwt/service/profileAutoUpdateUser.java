@@ -12,10 +12,7 @@ import jwt.service.dto.UserDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Transactional
@@ -56,6 +53,20 @@ public class profileAutoUpdateUser {
 
         userService.updateUser(userDTO);
         //---------------------------------------------------------------------------------------
+    }
+
+    public void deleteProfileUserAuthority(Long profileID) {
+        Set<ExtendUser> extendUserSet = extendUserRepository.findALlByProfileId(profileID);
+        for (ExtendUser extendUser: extendUserSet) {
+            extendUser.getUser().setAuthorities(new HashSet<>());
+            UserDTO userDTO = new UserDTO(extendUser.getUser());
+            userService.updateUser(userDTO);
+        }
+    }
+
+    public void deleteUserAuthority(Long extendUserID) {
+        ExtendUser extendUser = extendUserRepository.findById(extendUserID).get();
+        extendUser.getUser().setAuthorities(new HashSet<>());
     }
 
     public void autoUpdateExtendUserProfile(Profile profile) {

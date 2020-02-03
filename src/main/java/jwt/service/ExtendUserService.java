@@ -93,6 +93,7 @@ public class ExtendUserService {
      */
     public void delete(Long id) {
         log.debug("Request to delete ExtendUser : {}", id);
+        profileAutoUpdateUser.deleteUserAuthority(id);
         extendUserRepository.deleteById(id);
     }
 

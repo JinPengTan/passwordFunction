@@ -93,6 +93,7 @@ public class ProfileService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Profile : {}", id);
+        profileAutoUpdateUser.deleteProfileUserAuthority(id);
         profileRepository.deleteById(id);
     }
 
