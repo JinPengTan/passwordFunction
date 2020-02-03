@@ -117,7 +117,6 @@ export class ProfileUpdateComponent implements OnInit {
       for (let i = 0; i < this.permitList.length; i++) {
         if (this.permitList[i].name === e.target.value) {
           checkArray.push(new FormControl(this.permitList[i]));
-          console.log('PUSH' + checkArray.length);
           return;
         }
       }
@@ -127,12 +126,10 @@ export class ProfileUpdateComponent implements OnInit {
       checkArray.controls.forEach(item => {
         if (item.value.name === e.target.value) {
           checkArray.removeAt(i);
-          console.log('rEMOVE' + i + checkArray.value);
           return;
         }
         i++;
       });
-      console.log('rEMOVE' + checkArray.length);
     }
   }
 
