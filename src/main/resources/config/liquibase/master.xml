@@ -18,6 +18,10 @@
     <include file="config/liquibase/changelog/20200116025749_added_entity_Profile.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200116031022_added_entity_Permission.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200116033827_added_entity_ExtendUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200203070929_added_entity_ApiKey.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200203071932_added_entity_Token.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200203072707_added_entity_TokenHistory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200203073721_added_entity_UniqueToken.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200108032311_added_entity_constraints_Cycle.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200116025749_added_entity_constraints_Profile.xml" relativeToChangelogFile="false"/>

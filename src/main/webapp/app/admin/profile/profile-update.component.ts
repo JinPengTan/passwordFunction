@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -72,16 +72,23 @@ export class ProfileUpdateComponent implements OnInit {
       this.optionList.push({ name: 'TOKEN', permit: [] });
       this.optionList.push({ name: 'HISTORY', permit: [] });
       this.optionList.push({ name: 'ROLE', permit: [] });
-
-      this.permitList.forEach(permit => {
-        if (permit.name.includes('CYCLE')) this.optionList[0].permit.push(permit);
-        else if (permit.name.includes('PERMISSION')) this.optionList[1].permit.push(permit);
-        else if (permit.name.includes('EXTENDUSER')) this.optionList[2].permit.push(permit);
-        else if (permit.name.includes('PROFILE')) this.optionList[3].permit.push(permit);
-        else if (permit.name.includes('TOKEN')) this.optionList[4].permit.push(permit);
-        else if (permit.name.includes('HISTORY')) this.optionList[5].permit.push(permit);
-        else this.optionList[6].permit.push(permit);
-      });
+      if (this.permitList.length != 0) {
+        this.permitList.forEach(permit => {
+          // @ts-ignore
+          if (permit.name.includes('CYCLE')) this.optionList[0].permit.push(permit);
+          // @ts-ignore
+          else if (permit.name.includes('PERMISSION')) this.optionList[1].permit.push(permit);
+          // @ts-ignore
+          else if (permit.name.includes('EXTENDUSER')) this.optionList[2].permit.push(permit);
+          // @ts-ignore
+          else if (permit.name.includes('PROFILE')) this.optionList[3].permit.push(permit);
+          // @ts-ignore
+          else if (permit.name.includes('TOKEN')) this.optionList[4].permit.push(permit);
+          // @ts-ignore
+          else if (permit.name.includes('HISTORY')) this.optionList[5].permit.push(permit);
+          else this.optionList[6].permit.push(permit);
+        });
+      }
     });
   }
 

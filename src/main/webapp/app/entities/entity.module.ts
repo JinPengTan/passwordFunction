@@ -19,6 +19,22 @@ import { RouterModule } from '@angular/router';
       {
         path: 'profile',
         loadChildren: () => import('../admin/profile/profile.module').then(m => m.JhipsterProfileModule)
+      },
+      {
+        path: 'api-key',
+        loadChildren: () => import('./api-key/api-key.module').then(m => m.JhipsterApiKeyModule)
+      },
+      {
+        path: 'token',
+        loadChildren: () => import('./token/token.module').then(m => m.JhipsterTokenModule)
+      },
+      {
+        path: 'token-history',
+        loadChildren: () => import('./token-history/token-history.module').then(m => m.JhipsterTokenHistoryModule)
+      },
+      {
+        path: 'unique-token',
+        loadChildren: () => import('./unique-token/unique-token.module').then(m => m.JhipsterUniqueTokenModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
