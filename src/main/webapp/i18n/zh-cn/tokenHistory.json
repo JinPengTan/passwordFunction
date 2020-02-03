@@ -1,0 +1,31 @@
+{
+  "jhipsterApp": {
+    "tokenHistory": {
+      "home": {
+        "title": "Token Histories",
+        "createLabel": "创建新 Token History",
+        "createOrEditLabel": "创建或编辑 Token History",
+        "notFound": "No Token Histories found"
+      },
+      "created": "Token History {{ param }} 创建成功",
+      "updated": "Token History {{ param }} 更新成功",
+      "deleted": "Token History {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Token History {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Token History"
+      },
+      "tpan": "Tpan",
+      "hashKey": "Hash Key",
+      "tokenExpiry": "Token Expiry",
+      "tokenStatus": "Token Status",
+      "maskPan": "Mask Pan",
+      "enPan": "En Pan",
+      "expiryDate": "Expiry Date",
+      "trId": "Tr Id",
+      "version": "Version",
+      "historyDt": "History Dt"
+    }
+  }
+}

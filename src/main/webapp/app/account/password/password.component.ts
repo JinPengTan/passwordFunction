@@ -13,11 +13,19 @@ import { PasswordService } from './password.service';
 export class PasswordComponent implements OnInit {
   doNotMatch = false;
   error = false;
+  reuse = false;
   success = false;
   account$?: Observable<Account | null>;
   passwordForm = this.fb.group({
     currentPassword: ['', [Validators.required]],
-    newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[@#%$!&*])[a-zA-Z0-9@#%$!&*]{8,50}$')]],
+    newPassword: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern('^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[@#%$!&*])[a-zA-Z0-9@#%$!&*]{8,50}$')
+      ]
+    ],
     confirmPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50)]]
   });
 
@@ -31,6 +39,7 @@ export class PasswordComponent implements OnInit {
     this.error = false;
     this.success = false;
     this.doNotMatch = false;
+    this.reuse = false;
 
     const newPassword = this.passwordForm.get(['newPassword'])!.value;
     if (newPassword !== this.passwordForm.get(['confirmPassword'])!.value) {
@@ -38,8 +47,20 @@ export class PasswordComponent implements OnInit {
     } else {
       this.passwordService.save(newPassword, this.passwordForm.get(['currentPassword'])!.value).subscribe(
         () => {
-          (this.success = true)},
-        () => (this.error = true)
+          this.success = true;
+        },
+        error => {
+          console.log(error);
+          console.log(error.status);
+          console.log(error.status === 417);
+          if (error.status === 417) {
+            console.log('resue');
+            this.reuse = true;
+          } else {
+            console.log('error');
+            this.error = true;
+          }
+        }
       );
     }
   }

@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "apiKey": {
+      "home": {
+        "title": "Api Keys",
+        "createLabel": "建立一筆新的 Api Key",
+        "createOrEditLabel": "建立或編輯 Api Key",
+        "notFound": "No Api Keys found"
+      },
+      "created": "新的 Api Key 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Api Key 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Api Key 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Api Key {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Api Key"
+      },
+      "requestorType": "Requestor Type",
+      "requestorId": "Requestor Id",
+      "apiKey": "Api Key",
+      "apiStatus": "Api Status",
+      "modifiedDate": "Modified Date",
+      "createdDate": "Created Date"
+    }
+  }
+}

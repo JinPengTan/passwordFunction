@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jhipsterApp.tokenHistory.home.title">Token Histories</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-token-history" [routerLink]="['/token-history/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipsterApp.tokenHistory.home.createLabel">
+            Create a new Token History
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="tokenHistories?.length === 0">
+        <span jhiTranslate="jhipsterApp.tokenHistory.home.notFound">No tokenHistories found</span>
+    </div>
+    <div class="table-responsive" *ngIf="tokenHistories?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tpan"><span jhiTranslate="jhipsterApp.tokenHistory.tpan">Tpan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="hashKey"><span jhiTranslate="jhipsterApp.tokenHistory.hashKey">Hash Key</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tokenExpiry"><span jhiTranslate="jhipsterApp.tokenHistory.tokenExpiry">Token Expiry</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tokenStatus"><span jhiTranslate="jhipsterApp.tokenHistory.tokenStatus">Token Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="maskPan"><span jhiTranslate="jhipsterApp.tokenHistory.maskPan">Mask Pan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="enPan"><span jhiTranslate="jhipsterApp.tokenHistory.enPan">En Pan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="expiryDate"><span jhiTranslate="jhipsterApp.tokenHistory.expiryDate">Expiry Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="trId"><span jhiTranslate="jhipsterApp.tokenHistory.trId">Tr Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="version"><span jhiTranslate="jhipsterApp.tokenHistory.version">Version</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="historyDt"><span jhiTranslate="jhipsterApp.tokenHistory.historyDt">History Dt</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tokenHistory of tokenHistories ;trackBy: trackId">
+                <td><a [routerLink]="['/token-history', tokenHistory.id, 'view' ]">{{tokenHistory.id}}</a></td>
+                <td>{{tokenHistory.tpan}}</td>
+                <td>{{tokenHistory.hashKey}}</td>
+                <td>{{tokenHistory.tokenExpiry}}</td>
+                <td>{{tokenHistory.tokenStatus}}</td>
+                <td>{{tokenHistory.maskPan}}</td>
+                <td>{{tokenHistory.enPan}}</td>
+                <td>{{tokenHistory.expiryDate}}</td>
+                <td>{{tokenHistory.trId}}</td>
+                <td>{{tokenHistory.version}}</td>
+                <td>{{tokenHistory.historyDt | date:'medium'}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/token-history', tokenHistory.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/token-history', tokenHistory.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(tokenHistory)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="tokenHistories?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

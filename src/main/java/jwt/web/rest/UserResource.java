@@ -150,6 +150,11 @@ public class UserResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/allUsers")
+    public List<User> getAllUsers() {
+        return userService.getUsers();
+    }
+
     /**
      * Gets a list of all roles.
      * @return a string list of all roles.

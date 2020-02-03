@@ -8,9 +8,8 @@ import { JhipsterAppRoutingModule } from './app-routing.module';
 import { JhipsterHomeModule } from './home/home.module';
 import { JhipsterEntityModule } from './entities/entity.module';
 
-import { MatDialogModule } from "@angular/material";
-import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
+import { MatDialogModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from './layouts/main/main.component';
@@ -19,7 +18,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import {ExpiredComponent} from "app/shared/expired/expired/expired.component";
+import { ExpiredComponent } from 'app/shared/expired/expired/expired.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -31,9 +31,19 @@ import {ExpiredComponent} from "app/shared/expired/expired/expired.component";
     // jhipster-needle-angular-add-module JHipster will add new module here
     JhipsterEntityModule,
     JhipsterAppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, ExpiredComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    ExpiredComponent
+  ],
   bootstrap: [MainComponent],
   entryComponents: [ExpiredComponent]
 })

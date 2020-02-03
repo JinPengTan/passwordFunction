@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "permission",
+            "otherEntityName": "permission",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "profile"
+        },
+        {
+            "relationshipName": "extendUser",
+            "otherEntityName": "extendUser",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "profile"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "role",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200116025749",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "profile",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

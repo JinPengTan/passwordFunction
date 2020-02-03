@@ -1,0 +1,23 @@
+{
+  "jhipsterApp": {
+    "uniqueToken": {
+      "home": {
+        "title": "Unique Tokens",
+        "createLabel": "Create a new Unique Token",
+        "createOrEditLabel": "Create or edit a Unique Token",
+        "notFound": "No Unique Tokens found"
+      },
+      "created": "A new Unique Token is created with identifier {{ param }}",
+      "updated": "A Unique Token is updated with identifier {{ param }}",
+      "deleted": "A Unique Token is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Unique Token {{ id }}?"
+      },
+      "detail": {
+        "title": "Unique Token"
+      },
+      "walletId": "Wallet Id",
+      "tpan": "Tpan"
+    }
+  }
+}

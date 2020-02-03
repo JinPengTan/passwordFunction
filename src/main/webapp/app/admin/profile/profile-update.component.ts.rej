@@ -1,0 +1,4 @@
+diff a/src/main/webapp/app/admin/profile/profile-update.component.ts b/src/main/webapp/app/admin/profile/profile-update.component.ts	(rejected hunks)
+@@ -4 +4 @@ import { HttpResponse } from '@angular/common/http';
+-import {FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
++import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';

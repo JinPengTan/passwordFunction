@@ -8,6 +8,13 @@
       "entities": {
         "main": "Entities",
         "cycle": "Cycle",
+        "profile": "Profile",
+        "permission": "Permission",
+        "extendUser": "Extend User",
+        "apiKey": "Api Key",
+        "token": "Token",
+        "tokenHistory": "Token History",
+        "uniqueToken": "Unique Token",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

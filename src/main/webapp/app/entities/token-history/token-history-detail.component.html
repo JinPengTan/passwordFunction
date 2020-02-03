@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tokenHistory">
+            <h2><span jhiTranslate="jhipsterApp.tokenHistory.detail.title">Token History</span> {{tokenHistory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.tpan">Tpan</span></dt>
+                <dd>
+                    <span>{{tokenHistory.tpan}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.hashKey">Hash Key</span></dt>
+                <dd>
+                    <span>{{tokenHistory.hashKey}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.tokenExpiry">Token Expiry</span></dt>
+                <dd>
+                    <span>{{tokenHistory.tokenExpiry}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.tokenStatus">Token Status</span></dt>
+                <dd>
+                    <span>{{tokenHistory.tokenStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.maskPan">Mask Pan</span></dt>
+                <dd>
+                    <span>{{tokenHistory.maskPan}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.enPan">En Pan</span></dt>
+                <dd>
+                    <span>{{tokenHistory.enPan}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.expiryDate">Expiry Date</span></dt>
+                <dd>
+                    <span>{{tokenHistory.expiryDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.trId">Tr Id</span></dt>
+                <dd>
+                    <span>{{tokenHistory.trId}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.version">Version</span></dt>
+                <dd>
+                    <span>{{tokenHistory.version}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.tokenHistory.historyDt">History Dt</span></dt>
+                <dd>
+                    <span>{{tokenHistory.historyDt}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/token-history', tokenHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

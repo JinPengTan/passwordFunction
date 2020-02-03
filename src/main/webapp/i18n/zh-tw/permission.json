@@ -1,0 +1,23 @@
+{
+  "jhipsterApp": {
+    "permission": {
+      "home": {
+        "title": "Permissions",
+        "createLabel": "建立一筆新的 Permission",
+        "createOrEditLabel": "建立或編輯 Permission",
+        "notFound": "No Permissions found"
+      },
+      "created": "新的 Permission 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Permission 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Permission 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Permission {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Permission"
+      },
+      "name": "Name",
+      "profile": "Profile"
+    }
+  }
+}
