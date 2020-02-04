@@ -42,7 +42,7 @@ export const tokenRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_TOKEN_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.token.home.title'
     },
@@ -55,23 +55,23 @@ export const tokenRoute: Routes = [
       token: TokenResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_TOKEN_READ'],
       pageTitle: 'jhipsterApp.token.home.title'
     },
     canActivate: [UserRouteAccessService]
   },
-  {
-    path: 'new',
-    component: TokenUpdateComponent,
-    resolve: {
-      token: TokenResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'jhipsterApp.token.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  },
+  // {
+  //   path: 'new',
+  //   component: TokenUpdateComponent,
+  //   resolve: {
+  //     token: TokenResolve
+  //   },
+  //   data: {
+  //     authorities: ['ROLE_USER'],
+  //     pageTitle: 'jhipsterApp.token.home.title'
+  //   },
+  //   canActivate: [UserRouteAccessService]
+  // },
   {
     path: ':id/edit',
     component: TokenUpdateComponent,
@@ -79,7 +79,7 @@ export const tokenRoute: Routes = [
       token: TokenResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_TOKEN_UPDATE'],
       pageTitle: 'jhipsterApp.token.home.title'
     },
     canActivate: [UserRouteAccessService]

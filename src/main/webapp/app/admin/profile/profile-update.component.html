@@ -45,10 +45,18 @@
                     <div *ngFor="let group of optionList" style="margin-top: 20px; margin-bottom: 20px">
                         <h4>{{group.name}}</h4>
                         <div style="margin-right: 90px;" class="custom-control custom-checkbox">
-                            <label *ngFor=" let permitOption of group.permit; let i = index">
-                                <input  type="checkbox" class="custom-control-input" [id]="permitOption.name+i" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name" (change)="onCheckboxChange($event)" />
-                                <label class="custom-control-label" [for]="permitOption.name+i" style="margin-right: 110px;">{{filterWord(permitOption.name)}}</label>
-                            </label>
+                            <span *ngFor=" let permitOption of group.permit; let i = index">
+                                <span *ngIf="!(permitOption.name === 'ROLE_USER'); else elseBlock">
+                                    <input   type="checkbox" class="custom-control-input" [id]="permitOption.name+i" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name" (change)="onCheckboxChange($event)" />
+                                    <label class="custom-control-label" [for]="permitOption.name+i" style="margin-right: 110px;">{{filterWord(permitOption.name)}}</label>
+                                </span>
+                                <ng-template #elseBlock>
+                                    <span>
+                                        <input disabled type="checkbox" class="custom-control-input" [id]="permitOption.name+i" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name" (change)="onCheckboxChange($event)" />
+                                        <label class="custom-control-label" [for]="permitOption.name+i" style="margin-right: 110px;">{{filterWord(permitOption.name)}}</label>
+                                    </span>
+                                </ng-template>
+                            </span>
 <!--                        <mat-radio-group>-->
 <!--                           <mat-radio-button *ngFor=" let permitOption of group.permit; let i = index" style="margin-left: 50px;" (change)="onCheckboxAllow($event)" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name">ADD</mat-radio-button>-->
 <!--                        </mat-radio-group>-->

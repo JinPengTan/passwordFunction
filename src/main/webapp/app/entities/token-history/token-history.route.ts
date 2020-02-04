@@ -42,7 +42,7 @@ export const tokenHistoryRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_HISTORY_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.tokenHistory.home.title'
     },
@@ -55,33 +55,33 @@ export const tokenHistoryRoute: Routes = [
       tokenHistory: TokenHistoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'jhipsterApp.tokenHistory.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  },
-  {
-    path: 'new',
-    component: TokenHistoryUpdateComponent,
-    resolve: {
-      tokenHistory: TokenHistoryResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'jhipsterApp.tokenHistory.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  },
-  {
-    path: ':id/edit',
-    component: TokenHistoryUpdateComponent,
-    resolve: {
-      tokenHistory: TokenHistoryResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_HISTORY_READ'],
       pageTitle: 'jhipsterApp.tokenHistory.home.title'
     },
     canActivate: [UserRouteAccessService]
   }
+  // {
+  //   path: 'new',
+  //   component: TokenHistoryUpdateComponent,
+  //   resolve: {
+  //     tokenHistory: TokenHistoryResolve
+  //   },
+  //   data: {
+  //     authorities: ['ROLE_USER'],
+  //     pageTitle: 'jhipsterApp.tokenHistory.home.title'
+  //   },
+  //   canActivate: [UserRouteAccessService]
+  // },
+  // {
+  //   path: ':id/edit',
+  //   component: TokenHistoryUpdateComponent,
+  //   resolve: {
+  //     tokenHistory: TokenHistoryResolve
+  //   },
+  //   data: {
+  //     authorities: ['ROLE_USER'],
+  //     pageTitle: 'jhipsterApp.tokenHistory.home.title'
+  //   },
+  //   canActivate: [UserRouteAccessService]
+  // }
 ];
