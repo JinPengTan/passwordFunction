@@ -2,10 +2,10 @@
   "jhipsterApp": {
     "extendUser": {
       "home": {
-        "title": "Extend Users",
-        "createLabel": "创建新 Extend User",
-        "createOrEditLabel": "创建或编辑 Extend User",
-        "notFound": "No Extend Users found"
+        "title": "用戶權限",
+        "createLabel": "创建新 用戶權限",
+        "createOrEditLabel": "创建或编辑 用戶權限",
+        "notFound": "無法查找用戶"
       },
       "created": "Extend User {{ param }} 创建成功",
       "updated": "Extend User {{ param }} 更新成功",
@@ -14,10 +14,10 @@
         "question": "你确定要删除 Extend User {{ id }} 吗？"
       },
       "detail": {
-        "title": "Extend User"
+        "title": "用戶權限"
       },
-      "user": "User",
-      "profile": "Profile"
+      "user": "用戶",
+      "profile": "權限"
     }
   }
 }

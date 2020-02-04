@@ -119,6 +119,7 @@ export class ProfileUpdateComponent implements OnInit {
     else return word.substring(5);
   }
 
+  // @ts-ignore
   onCheckboxChange(e) {
     const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
 
