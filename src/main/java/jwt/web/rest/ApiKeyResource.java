@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,7 @@ public class ApiKeyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/api-keys")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_APIKEY_ADD')")
     public ResponseEntity<ApiKey> createApiKey(@RequestBody ApiKey apiKey) throws URISyntaxException {
         log.debug("REST request to save ApiKey : {}", apiKey);
         if (apiKey.getId() != null) {
@@ -73,6 +75,7 @@ public class ApiKeyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/api-keys")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_APIKEY_UPDATE')")
     public ResponseEntity<ApiKey> updateApiKey(@RequestBody ApiKey apiKey) throws URISyntaxException {
         log.debug("REST request to update ApiKey : {}", apiKey);
         if (apiKey.getId() == null) {
@@ -93,6 +96,7 @@ public class ApiKeyResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of apiKeys in body.
      */
     @GetMapping("/api-keys")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_APIKEY_READ')")
     public ResponseEntity<List<ApiKey>> getAllApiKeys(Pageable pageable) {
         log.debug("REST request to get a page of ApiKeys");
         Page<ApiKey> page = apiKeyService.findAll(pageable);
@@ -107,6 +111,7 @@ public class ApiKeyResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the apiKey, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/api-keys/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_APIKEY_READ')")
     public ResponseEntity<ApiKey> getApiKey(@PathVariable Long id) {
         log.debug("REST request to get ApiKey : {}", id);
         Optional<ApiKey> apiKey = apiKeyService.findOne(id);
@@ -120,6 +125,7 @@ public class ApiKeyResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/api-keys/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_APIKEY_DELETE')")
     public ResponseEntity<Void> deleteApiKey(@PathVariable Long id) {
         log.debug("REST request to delete ApiKey : {}", id);
         apiKeyService.delete(id);
