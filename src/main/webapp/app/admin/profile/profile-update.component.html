@@ -52,7 +52,7 @@
                                 </span>
                                 <ng-template #elseBlock>
                                     <span>
-                                        <input disabled type="checkbox" class="custom-control-input" [id]="permitOption.name+i" [checked]="getChecked(editForm.get('permissions')!.value, permitOption)" [value]="permitOption.name" (change)="onCheckboxChange($event)" />
+                                        <input disabled type="checkbox" class="custom-control-input" [id]="permitOption.name+i" [checked]="permitOption.name === 'ROLE_USER'" [value]="permitOption.name" (change)="onCheckboxChange($event)" />
                                         <label class="custom-control-label" [for]="permitOption.name+i" style="margin-right: 110px;">{{filterWord(permitOption.name)}}</label>
                                     </span>
                                 </ng-template>

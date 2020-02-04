@@ -10,7 +10,7 @@
         "cycle": "Cycle",
         "profile": "Profile",
         "permission": "Permission",
-        "extendUser": "Extend User",
+        "extendUser": "Role Management",
         "apiKey": "Api Key",
         "token": "Token",
         "tokenHistory": "Token History",

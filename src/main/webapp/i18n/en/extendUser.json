@@ -2,19 +2,19 @@
   "jhipsterApp": {
     "extendUser": {
       "home": {
-        "title": "Extend Users",
-        "createLabel": "Create a new Extend User",
-        "createOrEditLabel": "Create or edit a Extend User",
-        "notFound": "No Extend Users found"
+        "title": "User Role",
+        "createLabel": "Create a new User Role",
+        "createOrEditLabel": "Create or edit a User Role",
+        "notFound": "No User Role found"
       },
-      "created": "A new Extend User is created with identifier {{ param }}",
-      "updated": "A Extend User is updated with identifier {{ param }}",
-      "deleted": "A Extend User is deleted with identifier {{ param }}",
+      "created": "A new User Role is created with identifier {{ param }}",
+      "updated": "A User Role is updated with identifier {{ param }}",
+      "deleted": "A User Role is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Extend User {{ id }}?"
+        "question": "Are you sure you want to delete User Role {{ id }}?"
       },
       "detail": {
-        "title": "Extend User"
+        "title": "User Role"
       },
       "user": "User",
       "profile": "Profile"
