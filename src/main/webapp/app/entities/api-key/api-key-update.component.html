@@ -24,11 +24,25 @@
                     <input type="text" class="form-control" name="apiKey" id="field_apiKey"
                            formControlName="apiKey"/>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jhipsterApp.apiKey.apiStatus" for="field_apiStatus">Api Status</label>
-                    <input type="text" class="form-control" name="apiStatus" id="field_apiStatus"
-                           formControlName="apiStatus"/>
-                </div>
+
+
+
+<!--                <div class="form-group">-->
+<!--                    <label class="form-control-label" jhiTranslate="jhipsterApp.apiKey.apiStatus" for="field_apiStatus">Api Status</label>-->
+<!--                    <input type="text" class="form-control" name="apiStatus" id="field_apiStatus"-->
+<!--                           formControlName="apiStatus"/>-->
+<!--                </div>-->
+
+                <!-- ANGULAR MATERIAL -->
+
+                <mat-label>API Status : {{selectedStatus}}</mat-label>
+                <mat-select class="border-bottom" style="margin-top: 20px; margin-bottom: 20px; border-color: gray" [(value)]="selectedStatus" formControlName="apiStatus">
+                    <mat-option value="Activate">Activate</mat-option>
+                    <mat-option value="Suspend">Suspend</mat-option>
+                    <mat-option value="Delete">Delete</mat-option>
+                </mat-select>
+
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterApp.apiKey.modifiedDate" for="field_modifiedDate">Modified Date</label>
                     <div class="d-flex">

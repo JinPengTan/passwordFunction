@@ -29,11 +29,17 @@
                     <input type="text" class="form-control" name="tokenExpiry" id="field_tokenExpiry"
                            formControlName="tokenExpiry"/>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jhipsterApp.token.tokenStatus" for="field_tokenStatus">Token Status</label>
-                    <input type="text" class="form-control" name="tokenStatus" id="field_tokenStatus"
-                           formControlName="tokenStatus"/>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label class="form-control-label" jhiTranslate="jhipsterApp.token.tokenStatus" for="field_tokenStatus">Token Status</label>-->
+<!--                    <input type="text" class="form-control" name="tokenStatus" id="field_tokenStatus"-->
+<!--                           formControlName="tokenStatus"/>-->
+<!--                </div>-->
+                <mat-label>Token Status : {{selectedStatus}}</mat-label>
+                <mat-select class="border-bottom" style="margin-top: 20px; margin-bottom: 20px; border-color: gray" [(value)]="selectedStatus" formControlName="tokenStatus">
+                    <mat-option value="Activate">Activate</mat-option>
+                    <mat-option value="Suspend">Suspend</mat-option>
+                    <mat-option value="Delete">Delete</mat-option>
+                </mat-select>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jhipsterApp.token.maskPan" for="field_maskPan">Mask Pan</label>
                     <input type="text" class="form-control" name="maskPan" id="field_maskPan"
