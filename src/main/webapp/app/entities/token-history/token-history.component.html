@@ -1,12 +1,12 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="jhipsterApp.tokenHistory.home.title">Token Histories</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-token-history" [routerLink]="['/token-history/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="jhipsterApp.tokenHistory.home.createLabel">
-            Create a new Token History
-            </span>
-        </button>
+<!--        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-token-history" [routerLink]="['/token-history/new']">-->
+<!--            <fa-icon [icon]="'plus'"></fa-icon>-->
+<!--            <span  jhiTranslate="jhipsterApp.tokenHistory.home.createLabel">-->
+<!--            Create a new Token History-->
+<!--            </span>-->
+<!--        </button>-->
     </h2>
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
@@ -53,17 +53,17 @@
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/token-history', tokenHistory.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit" (click)="delete(tokenHistory)"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
+<!--                        <button type="submit"-->
+<!--                                [routerLink]="['/token-history', tokenHistory.id, 'edit']"-->
+<!--                                class="btn btn-primary btn-sm">-->
+<!--                            <fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+<!--                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
+<!--                        </button>-->
+<!--                        <button type="submit" (click)="delete(tokenHistory)"-->
+<!--                                class="btn btn-danger btn-sm">-->
+<!--                            <fa-icon [icon]="'times'"></fa-icon>-->
+<!--                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>-->
+<!--                        </button>-->
                     </div>
                 </td>
             </tr>

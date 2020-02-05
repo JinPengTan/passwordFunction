@@ -23,6 +23,6 @@
         "remoteAddress": "远程地址:"
       }
     },
-    "notFound": "No audit found"
+    "notFound": "無法查找审计"
   }
 }

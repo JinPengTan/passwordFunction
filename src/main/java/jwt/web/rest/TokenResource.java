@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,17 +52,17 @@ public class TokenResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new token, or with status {@code 400 (Bad Request)} if the token has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/tokens")
-    public ResponseEntity<Token> createToken(@RequestBody Token token) throws URISyntaxException {
-        log.debug("REST request to save Token : {}", token);
-        if (token.getId() != null) {
-            throw new BadRequestAlertException("A new token cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        Token result = tokenService.save(token);
-        return ResponseEntity.created(new URI("/api/tokens/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
+//    @PostMapping("/tokens")
+//    public ResponseEntity<Token> createToken(@RequestBody Token token) throws URISyntaxException {
+//        log.debug("REST request to save Token : {}", token);
+//        if (token.getId() != null) {
+//            throw new BadRequestAlertException("A new token cannot already have an ID", ENTITY_NAME, "idexists");
+//        }
+//        Token result = tokenService.save(token);
+//        return ResponseEntity.created(new URI("/api/tokens/" + result.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+//            .body(result);
+//    }
 
     /**
      * {@code PUT  /tokens} : Updates an existing token.
@@ -73,6 +74,7 @@ public class TokenResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/tokens")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_TOKEN_UPDATE')")
     public ResponseEntity<Token> updateToken(@RequestBody Token token) throws URISyntaxException {
         log.debug("REST request to update Token : {}", token);
         if (token.getId() == null) {
@@ -93,6 +95,7 @@ public class TokenResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tokens in body.
      */
     @GetMapping("/tokens")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_TOKEN_READ')")
     public ResponseEntity<List<Token>> getAllTokens(Pageable pageable) {
         log.debug("REST request to get a page of Tokens");
         Page<Token> page = tokenService.findAll(pageable);
@@ -107,6 +110,7 @@ public class TokenResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the token, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/tokens/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_TOKEN_READ')")
     public ResponseEntity<Token> getToken(@PathVariable Long id) {
         log.debug("REST request to get Token : {}", id);
         Optional<Token> token = tokenService.findOne(id);
@@ -120,6 +124,7 @@ public class TokenResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/tokens/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_TOKEN_DELETE')")
     public ResponseEntity<Void> deleteToken(@PathVariable Long id) {
         log.debug("REST request to delete Token : {}", id);
         tokenService.delete(id);

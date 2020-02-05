@@ -42,7 +42,7 @@ export const apiKeyRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_APIKEY_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.apiKey.home.title'
     },
@@ -55,7 +55,7 @@ export const apiKeyRoute: Routes = [
       apiKey: ApiKeyResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_APIKEY_READ'],
       pageTitle: 'jhipsterApp.apiKey.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const apiKeyRoute: Routes = [
       apiKey: ApiKeyResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_APIKEY_ADD'],
       pageTitle: 'jhipsterApp.apiKey.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const apiKeyRoute: Routes = [
       apiKey: ApiKeyResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_APIKEY_UPDATE'],
       pageTitle: 'jhipsterApp.apiKey.home.title'
     },
     canActivate: [UserRouteAccessService]

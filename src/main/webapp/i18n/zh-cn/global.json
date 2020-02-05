@@ -9,12 +9,12 @@
         "main": "数据",
         "cycle": "Cycle",
         "profile": "Profile",
-        "permission": "Permission",
-        "extendUser": "Extend User",
-        "apiKey": "Api Key",
-        "token": "Token",
-        "tokenHistory": "Token History",
-        "uniqueToken": "Unique Token",
+        "permission": "權限",
+        "extendUser": "用戶權限",
+        "apiKey": "Api 密匙",
+        "token": "代币",
+        "tokenHistory": "代币歷史記錄記錄",
+        "uniqueToken": "独特代币",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -17,8 +17,8 @@
         "title": "Profile"
       },
       "role": "Role",
-      "permission": "Permission",
-      "extendUser": "Extend User"
+      "permission": "權限",
+      "extendUser": "用戶權限"
     }
   }
 }

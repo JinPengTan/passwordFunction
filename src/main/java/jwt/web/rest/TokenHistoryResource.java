@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,17 +52,17 @@ public class TokenHistoryResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new tokenHistory, or with status {@code 400 (Bad Request)} if the tokenHistory has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/token-histories")
-    public ResponseEntity<TokenHistory> createTokenHistory(@RequestBody TokenHistory tokenHistory) throws URISyntaxException {
-        log.debug("REST request to save TokenHistory : {}", tokenHistory);
-        if (tokenHistory.getId() != null) {
-            throw new BadRequestAlertException("A new tokenHistory cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        TokenHistory result = tokenHistoryService.save(tokenHistory);
-        return ResponseEntity.created(new URI("/api/token-histories/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
+//    @PostMapping("/token-histories")
+//    public ResponseEntity<TokenHistory> createTokenHistory(@RequestBody TokenHistory tokenHistory) throws URISyntaxException {
+//        log.debug("REST request to save TokenHistory : {}", tokenHistory);
+//        if (tokenHistory.getId() != null) {
+//            throw new BadRequestAlertException("A new tokenHistory cannot already have an ID", ENTITY_NAME, "idexists");
+//        }
+//        TokenHistory result = tokenHistoryService.save(tokenHistory);
+//        return ResponseEntity.created(new URI("/api/token-histories/" + result.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+//            .body(result);
+//    }
 
     /**
      * {@code PUT  /token-histories} : Updates an existing tokenHistory.
@@ -72,17 +73,17 @@ public class TokenHistoryResource {
      * or with status {@code 500 (Internal Server Error)} if the tokenHistory couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/token-histories")
-    public ResponseEntity<TokenHistory> updateTokenHistory(@RequestBody TokenHistory tokenHistory) throws URISyntaxException {
-        log.debug("REST request to update TokenHistory : {}", tokenHistory);
-        if (tokenHistory.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        TokenHistory result = tokenHistoryService.save(tokenHistory);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, tokenHistory.getId().toString()))
-            .body(result);
-    }
+//    @PutMapping("/token-histories")
+//    public ResponseEntity<TokenHistory> updateTokenHistory(@RequestBody TokenHistory tokenHistory) throws URISyntaxException {
+//        log.debug("REST request to update TokenHistory : {}", tokenHistory);
+//        if (tokenHistory.getId() == null) {
+//            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+//        }
+//        TokenHistory result = tokenHistoryService.save(tokenHistory);
+//        return ResponseEntity.ok()
+//            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, tokenHistory.getId().toString()))
+//            .body(result);
+//    }
 
     /**
      * {@code GET  /token-histories} : get all the tokenHistories.
@@ -93,6 +94,7 @@ public class TokenHistoryResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tokenHistories in body.
      */
     @GetMapping("/token-histories")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_HISTORY_READ')")
     public ResponseEntity<List<TokenHistory>> getAllTokenHistories(Pageable pageable) {
         log.debug("REST request to get a page of TokenHistories");
         Page<TokenHistory> page = tokenHistoryService.findAll(pageable);
@@ -107,6 +109,7 @@ public class TokenHistoryResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the tokenHistory, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/token-histories/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_HISTORY_READ')")
     public ResponseEntity<TokenHistory> getTokenHistory(@PathVariable Long id) {
         log.debug("REST request to get TokenHistory : {}", id);
         Optional<TokenHistory> tokenHistory = tokenHistoryService.findOne(id);
@@ -119,10 +122,10 @@ public class TokenHistoryResource {
      * @param id the id of the tokenHistory to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/token-histories/{id}")
-    public ResponseEntity<Void> deleteTokenHistory(@PathVariable Long id) {
-        log.debug("REST request to delete TokenHistory : {}", id);
-        tokenHistoryService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
-    }
+//    @DeleteMapping("/token-histories/{id}")
+//    public ResponseEntity<Void> deleteTokenHistory(@PathVariable Long id) {
+//        log.debug("REST request to delete TokenHistory : {}", id);
+//        tokenHistoryService.delete(id);
+//        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+//    }
 }

@@ -14,6 +14,7 @@ import { TokenService } from './token.service';
 })
 export class TokenUpdateComponent implements OnInit {
   isSaving = false;
+  selectedStatus: string = '';
 
   editForm = this.fb.group({
     id: [],
@@ -49,6 +50,9 @@ export class TokenUpdateComponent implements OnInit {
       expiryDate: token.expiryDate,
       version: token.version
     });
+
+    // @ts-ignore
+    this.selectedStatus = this.editForm.get('tokenStatus').value;
   }
 
   previousState(): void {

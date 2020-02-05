@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      {
-        path: 'cycle',
-        loadChildren: () => import('./cycle/cycle.module').then(m => m.JhipsterCycleModule)
-      },
-      {
-        path: 'permission',
-        loadChildren: () => import('./permission/permission.module').then(m => m.JhipsterPermissionModule)
-      },
+      // {
+      //   path: 'cycle',
+      //   loadChildren: () => import('./cycle/cycle.module').then(m => m.JhipsterCycleModule)
+      // },
+      // {
+      //   path: 'permission',
+      //   loadChildren: () => import('./permission/permission.module').then(m => m.JhipsterPermissionModule)
+      // },
       {
         path: 'extend-user',
         loadChildren: () => import('./extend-user/extend-user.module').then(m => m.JhipsterExtendUserModule)

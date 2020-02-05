@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,7 @@ public class UniqueTokenResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/unique-tokens")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_UNIQUETOKEN_ADD')")
     public ResponseEntity<UniqueToken> createUniqueToken(@RequestBody UniqueToken uniqueToken) throws URISyntaxException {
         log.debug("REST request to save UniqueToken : {}", uniqueToken);
         if (uniqueToken.getId() != null) {
@@ -73,6 +75,7 @@ public class UniqueTokenResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/unique-tokens")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_UNIQUETOKEN_UPDATE')")
     public ResponseEntity<UniqueToken> updateUniqueToken(@RequestBody UniqueToken uniqueToken) throws URISyntaxException {
         log.debug("REST request to update UniqueToken : {}", uniqueToken);
         if (uniqueToken.getId() == null) {
@@ -93,6 +96,7 @@ public class UniqueTokenResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of uniqueTokens in body.
      */
     @GetMapping("/unique-tokens")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_UNIQUETOKEN_READ')")
     public ResponseEntity<List<UniqueToken>> getAllUniqueTokens(Pageable pageable) {
         log.debug("REST request to get a page of UniqueTokens");
         Page<UniqueToken> page = uniqueTokenService.findAll(pageable);
@@ -107,6 +111,7 @@ public class UniqueTokenResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the uniqueToken, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/unique-tokens/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_UNIQUETOKEN_READ')")
     public ResponseEntity<UniqueToken> getUniqueToken(@PathVariable Long id) {
         log.debug("REST request to get UniqueToken : {}", id);
         Optional<UniqueToken> uniqueToken = uniqueTokenService.findOne(id);
@@ -120,6 +125,7 @@ public class UniqueTokenResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/unique-tokens/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')" + " || hasAuthority('ROLE_UNIQUETOKEN_DELETE')")
     public ResponseEntity<Void> deleteUniqueToken(@PathVariable Long id) {
         log.debug("REST request to delete UniqueToken : {}", id);
         uniqueTokenService.delete(id);

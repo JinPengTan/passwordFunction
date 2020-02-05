@@ -42,7 +42,7 @@ export const uniqueTokenRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_UNIQUETOKEN_READ'],
       defaultSort: 'id,asc',
       pageTitle: 'jhipsterApp.uniqueToken.home.title'
     },
@@ -55,7 +55,7 @@ export const uniqueTokenRoute: Routes = [
       uniqueToken: UniqueTokenResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_UNIQUETOKEN_READ'],
       pageTitle: 'jhipsterApp.uniqueToken.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const uniqueTokenRoute: Routes = [
       uniqueToken: UniqueTokenResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_UNIQUETOKEN_ADD'],
       pageTitle: 'jhipsterApp.uniqueToken.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const uniqueTokenRoute: Routes = [
       uniqueToken: UniqueTokenResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN', 'ROLE_UNIQUETOKEN_UPDATE'],
       pageTitle: 'jhipsterApp.uniqueToken.home.title'
     },
     canActivate: [UserRouteAccessService]

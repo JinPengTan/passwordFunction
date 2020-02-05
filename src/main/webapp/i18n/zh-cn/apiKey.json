@@ -2,10 +2,10 @@
   "jhipsterApp": {
     "apiKey": {
       "home": {
-        "title": "Api Keys",
-        "createLabel": "创建新 Api Key",
+        "title": "Api 密匙",
+        "createLabel": "创建新 Api 密匙",
         "createOrEditLabel": "创建或编辑 Api Key",
-        "notFound": "No Api Keys found"
+        "notFound": "無法查找密匙"
       },
       "created": "Api Key {{ param }} 创建成功",
       "updated": "Api Key {{ param }} 更新成功",
@@ -14,14 +14,14 @@
         "question": "你确定要删除 Api Key {{ id }} 吗？"
       },
       "detail": {
-        "title": "Api Key"
+        "title": "Api 密匙"
       },
-      "requestorType": "Requestor Type",
+      "requestorType": "Requestor TYpe",
       "requestorId": "Requestor Id",
       "apiKey": "Api Key",
       "apiStatus": "Api Status",
       "modifiedDate": "Modified Date",
-      "createdDate": "Created Date"
+      "createdDate": "Create Date"
     }
   }
 }

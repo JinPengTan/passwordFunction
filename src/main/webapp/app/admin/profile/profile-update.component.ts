@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 
 import { IProfile, Profile } from 'app/shared/model/profile.model';
 import { ProfileService } from './profile.service';
-import { IPermission } from 'app/shared/model/permission.model';
+import { IPermission, Permission } from 'app/shared/model/permission.model';
 import { PermissionService } from 'app/entities/permission/permission.service';
 
 export interface PermissionGroup {
@@ -46,8 +46,8 @@ export class ProfileUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ profile }) => {
       //Push data into Form
       if (profile) {
+        const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
         for (let permit in profile.permissions) {
-          const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
           checkArray.push(new FormControl(permit));
         }
       }
@@ -92,10 +92,19 @@ export class ProfileUpdateComponent implements OnInit {
           else if (permit.name.includes('HISTORY')) this.optionList[6].permit.push(permit);
           // @ts-ignore
           else if (permit.name.includes('APIKEY')) this.optionList[7].permit.push(permit);
-          else this.optionList[8].permit.push(permit);
+          else {
+            this.optionList[8].permit.push(permit);
+            if (permit.name === 'ROLE_USER') this.defaultRole(permit);
+          }
         });
       }
     });
+  }
+
+  //Set default ROLE_USER
+  defaultRole(permit: IPermission) {
+    const checkArray = this.editForm.get('permissions') as FormArray;
+    checkArray.push(new FormControl(permit));
   }
 
   filterWord(word: string): string {
@@ -110,6 +119,7 @@ export class ProfileUpdateComponent implements OnInit {
     else return word.substring(5);
   }
 
+  // @ts-ignore
   onCheckboxChange(e) {
     const checkArray: FormArray = this.editForm.get('permissions') as FormArray;
 

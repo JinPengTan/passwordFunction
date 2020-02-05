@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="profile">
-            <h2><span jhiTranslate="jhipsterApp.profile.detail.title">Profile</span> {{profile.id}}</h2>
+            <h2><span jhiTranslate="jhipsterApp.profile.detail.title">Profile</span> {{'ID : ' + profile.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
@@ -9,12 +9,22 @@
                 <dd>
                     <span>{{profile.role}}</span>
                 </dd>
+<!--                <dt><span jhiTranslate="jhipsterApp.profile.permission">Permission</span></dt>-->
+<!--                <dd>-->
+<!--                    <span *ngFor="let permission of profile.permissions; let last = last">-->
+<!--                        <a [routerLink]="['/permission', permission?.id, 'view' ]">{{permission.name}}</a>{{last ? '' : ', '}}-->
+<!--                    </span>-->
+<!--                </dd>-->
                 <dt><span jhiTranslate="jhipsterApp.profile.permission">Permission</span></dt>
                 <dd>
-                    <span *ngFor="let permission of profile.permissions; let last = last">
-                        <a [routerLink]="['/permission', permission?.id, 'view' ]">{{permission.name}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let permission of profile.permissions">
+                            <span class="badge badge-info">{{permission.name}}</span>
+                        </li>
+                    </ul>
                 </dd>
+
+
             </dl>
 
             <button type="submit"

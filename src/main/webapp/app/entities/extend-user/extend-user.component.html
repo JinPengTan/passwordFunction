@@ -1,10 +1,16 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="jhipsterApp.extendUser.home.title">Extend Users</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-extend-user" [routerLink]="['/extend-user/new']">
+        <button style="margin-left: 15px" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-extend-user" [routerLink]="['/extend-user/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="jhipsterApp.extendUser.home.createLabel">
-            Create a new Extend User
+            Create a new User Role
+            </span>
+        </button>
+        <button id="jh-create-entity1" class="btn btn-primary float-right jh-create-entity create-profile" [routerLink]="['/profile/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipsterApp.profile.home.createLabel">
+            Create a new Profile
             </span>
         </button>
     </h2>

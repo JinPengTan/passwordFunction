@@ -9,6 +9,7 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IApiKey, ApiKey } from 'app/shared/model/api-key.model';
 import { ApiKeyService } from './api-key.service';
+import { IPermission } from 'app/shared/model/permission.model';
 
 @Component({
   selector: 'jhi-api-key-update',
@@ -16,6 +17,7 @@ import { ApiKeyService } from './api-key.service';
 })
 export class ApiKeyUpdateComponent implements OnInit {
   isSaving = false;
+  selectedStatus: string = '';
 
   editForm = this.fb.group({
     id: [],
@@ -45,6 +47,9 @@ export class ApiKeyUpdateComponent implements OnInit {
       modifiedDate: apiKey.modifiedDate != null ? apiKey.modifiedDate.format(DATE_TIME_FORMAT) : null,
       createdDate: apiKey.createdDate != null ? apiKey.createdDate.format(DATE_TIME_FORMAT) : null
     });
+
+    // @ts-ignore
+    this.selectedStatus = this.editForm.get('apiStatus').value;
   }
 
   previousState(): void {
