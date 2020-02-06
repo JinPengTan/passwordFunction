@@ -42,8 +42,12 @@ Generic styles
 
 .jh-card {
   padding: 1.5%;
-  margin-top: 20px;
+  margin-top: 13px;
   border: none;
+}
+
+.card {
+  box-shadow: none;
 }
 
 .error {
@@ -161,6 +165,18 @@ ui bootstrap tweaks
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* ==========================================================================
+Menu Button
+========================================================================== */
+
+.menuButton {
+  width: 100%;
+  text-align: left;
+}
+.menuButton:focus {
+  outline: none;
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */

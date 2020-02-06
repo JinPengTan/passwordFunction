@@ -1,10 +1,205 @@
-<jhi-page-ribbon></jhi-page-ribbon>
-<div>
-    <router-outlet name="navbar"></router-outlet>
-</div>
-<div class="container-fluid">
-    <div class="card jh-card">
-        <router-outlet></router-outlet>
-    </div>
-    <jhi-footer></jhi-footer>
-</div>
+<!--<jhi-page-ribbon></jhi-page-ribbon>-->
+<!--<div>-->
+<!--    <router-outlet name="navbar"></router-outlet>-->
+<!--</div>-->
+
+<mat-sidenav-container style="height: 919px; background-color: #F2F2F2">
+    <mat-sidenav style="width: 20%" mode="side" opened >
+        <div style="margin: auto; padding: 15px; text-align: center" class="border-bottom">
+            <h4 style="margin-top: 1rem; margin-bottom: 1rem">Token Vault</h4>
+        </div>
+
+
+<!-- Before Authenticate -->
+        <div [ngSwitch]="isAuthenticated()">
+            <mat-accordion>
+            <div>
+<!--Administration-->
+                <div *jhiHasAnyAuthority="'ROLE_ADMIN'" >
+                    <div *ngIf="passwordChecker() == 'false' && isAuthenticated()===true">
+<!--                        <h5 style="margin: auto; padding: 15px; text-align: center">Admin</h5>-->
+                    <mat-expansion-panel style="box-shadow: none">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <span jhiTranslate="global.menu.admin.main">Administration</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div>
+                            <button mat-button class="menuButton" routerLink="admin/user-management" routerLinkActive="active">
+                                <fa-icon icon="user" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.admin.userManagement" style="margin-left: 10px">User Management</span>
+                            </button>
+                        </div>
+                        <div>
+                            <h5 style="margin-top: 0.5rem; margin-left: 1rem">Access control</h5>
+                        </div>
+                        <div>
+                            <button mat-button  class="menuButton" style="padding-left: 40px"  routerLink="extend-user" routerLinkActive="active">
+                                <fa-icon icon="user" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.entities.extendUser" style="margin-left: 10px">Role Management</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-button  class="menuButton" style="padding-left: 40px" routerLink="profile" routerLinkActive="active">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.entities.profile" style="margin-left: 10px">Profile</span>
+                            </button>
+                        </div>
+                    </mat-expansion-panel>
+                    </div>
+                </div>
+<!--Entity-->
+                <div *ngIf="passwordChecker() == 'false' && isAuthenticated()===true">
+<!--                <h5 style="margin: auto; padding: 15px; text-align: center">Module</h5>-->
+                <mat-expansion-panel style="box-shadow: none">
+                    <mat-expansion-panel-header >
+                        <mat-panel-title>
+                            <span jhiTranslate="global.menu.entities.main">Module</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <div *ngSwitchCase="true">
+                            <button mat-button  class="menuButton"  routerLink="api-key" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.entities.apiKey" style="margin-left: 10px">Api Key</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="true">
+                        <button mat-button  class="menuButton"  routerLink="token" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.token" style="margin-left: 10px">Token</span>
+                        </button>
+                    </div>
+                    <div *ngSwitchCase="true">
+                        <button mat-button  class="menuButton"  routerLink="token-history" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.tokenHistory" style="margin-left: 10px">Token History</span>
+                        </button>
+                    </div>
+                    <div *ngSwitchCase="true">
+                        <button mat-button  class="menuButton"  routerLink="unique-token" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.uniqueToken" style="margin-left: 10px">Unique Token</span>
+                        </button>
+                    </div>
+                </mat-expansion-panel>
+            </div>
+<!--Language -->
+                <div style=" position: absolute; bottom: 5px; width: 100%">
+                <h5 style="margin: auto; padding: 15px; text-align: center">System</h5>
+                <mat-expansion-panel style="box-shadow: none">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title *ngIf="languages && languages.length > 1" href="javascript:void(0);" id="languagesnavBarDropdown">
+                            <span jhiTranslate="global.menu.language">Language</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div aria-labelledby="languagesnavBarDropdown" *ngFor="let language of languages">
+                        <button  class="menuButton"  mat-button [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);">
+                            {{language | findLanguageFromKey}}
+                        </button>
+                    </div>
+                </mat-expansion-panel>
+                    <mat-expansion-panel style="box-shadow: none">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Account
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <!-- SIGN IN -->
+                        <div *ngSwitchCase="false">
+                            <button  class="menuButton"  mat-button (click)="login()" id="login">
+                                <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.login"  style="margin-left: 10px">Sign in</span>
+                            </button>
+                        </div>
+                        <div *ngSwitchCase="false">
+                            <button  class="menuButton"  mat-button routerLink="account/register">
+                                <fa-icon icon="user-plus" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.register" style="margin-left: 10px">Register</span>
+                            </button>
+                        </div>
+                        <div *ngSwitchCase="true">
+                            <button  class="menuButton"  mat-button routerLink="account/settings" routerLinkActive="active" *ngIf="passwordChecker() == 'false'">
+                                <fa-icon icon="wrench" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.settings" style="margin-left: 10px">Setting</span>
+                            </button>
+                        </div>
+                        <div *ngSwitchCase="true">
+                            <button  class="menuButton"  mat-button routerLink="account/password" routerLinkActive="active">
+                                <fa-icon icon="lock" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.password" style="margin-left: 10px">Password</span>
+                            </button>
+                        </div>
+                        <div *ngSwitchCase="true">
+                            <button  class="menuButton"  mat-button (click)="logout()" id="logout">
+                                <fa-icon icon="sign-out-alt" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.logout" style="margin-left: 10px">Sign out</span>
+                            </button>
+                        </div>
+                    </mat-expansion-panel>
+                    <!-- HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe-->
+                    <mat-expansion-panel style="box-shadow: none">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                System & Documentation
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <!-- SIGN IN -->
+                        <div>
+                            <button mat-button  class="menuButton"  routerLink="admin/metrics" routerLinkActive="active">
+                                <fa-icon icon="tachometer-alt" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.admin.metrics" style="margin-left: 10px">Metrics</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-button  class="menuButton"  routerLink="admin/health" routerLinkActive="active">
+                                <fa-icon icon="heart" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.admin.health" style="margin-left: 10px">Health</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-button  class="menuButton"  routerLink="admin/configuration" routerLinkActive="active">
+                                <fa-icon icon="list" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.admin.configuration" style="margin-left: 10px">Configuration</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-button  class="menuButton"  routerLink="admin/audits" routerLinkActive="active">
+                                <fa-icon icon="bell" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.admin.audits" style="margin-left: 10px">Audits</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-button  class="menuButton"  routerLink="admin/logs" routerLinkActive="active">
+                                <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.admin.logs" style="margin-left: 10px">Logs</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-button  class="menuButton"  routerLink="admin/docs" routerLinkActive="active">
+                                <fa-icon icon="book" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.admin.apidocs" style="margin-left: 10px">API</span>
+                            </button>
+                        </div>
+                    </mat-expansion-panel>
+                </div>
+            </div>
+            </mat-accordion>
+        </div>
+
+
+
+
+    </mat-sidenav>
+    <mat-sidenav-content style="margin-left: 20%">
+        <div class="container-fluid">
+            <div class="card jh-card">
+                <router-outlet></router-outlet>
+            </div>
+<!--            <jhi-footer></jhi-footer>-->
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

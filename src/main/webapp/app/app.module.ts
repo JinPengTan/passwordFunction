@@ -20,6 +20,10 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { ExpiredComponent } from 'app/shared/expired/expired/expired.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -33,7 +37,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     JhipsterAppRoutingModule,
     MatDialogModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   declarations: [
     MainComponent,
