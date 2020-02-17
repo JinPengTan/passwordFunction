@@ -4,9 +4,9 @@
 <!--</div>-->
 
 <mat-sidenav-container style="height: 919px; background-color: #F2F2F2">
-    <mat-sidenav style="width: 20%" mode="side" opened >
+    <mat-sidenav style="width: 20%;" mode="side" opened >
         <div style="margin: auto; padding: 15px; text-align: center" class="border-bottom">
-            <h4 style="margin-top: 1rem; margin-bottom: 1rem">Token Vault</h4>
+                <h4 style="margin-top: 1rem; margin-bottom: 1rem">Token Vault</h4>
         </div>
 
 
@@ -14,11 +14,17 @@
         <div [ngSwitch]="isAuthenticated()">
             <mat-accordion>
             <div>
+                <div style="margin-top: 1rem; margin-bottom:1rem">
+                    <button mat-button  class="menuButton" style="padding-left: 40px" routerLink="/" routerLinkActive="active" *ngIf="passwordChecker() == 'false'">
+                        <fa-icon icon="home"></fa-icon>
+                        <span jhiTranslate="global.menu.home" style="margin-left: 10px">Home</span>
+                    </button>
+                </div>
 <!--Administration-->
                 <div *jhiHasAnyAuthority="'ROLE_ADMIN'" >
                     <div *ngIf="passwordChecker() == 'false' && isAuthenticated()===true">
 <!--                        <h5 style="margin: auto; padding: 15px; text-align: center">Admin</h5>-->
-                    <mat-expansion-panel style="box-shadow: none">
+                    <mat-expansion-panel  style="box-shadow: none;">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 <span jhiTranslate="global.menu.admin.main">Administration</span>
@@ -51,7 +57,7 @@
 <!--Entity-->
                 <div *ngIf="passwordChecker() == 'false' && isAuthenticated()===true">
 <!--                <h5 style="margin: auto; padding: 15px; text-align: center">Module</h5>-->
-                <mat-expansion-panel style="box-shadow: none">
+                <mat-expansion-panel  style="box-shadow: none">
                     <mat-expansion-panel-header >
                         <mat-panel-title>
                             <span jhiTranslate="global.menu.entities.main">Module</span>
@@ -59,7 +65,7 @@
                     </mat-expansion-panel-header>
                     <div>
                         <div *ngSwitchCase="true">
-                            <button mat-button  class="menuButton"  routerLink="api-key" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <button mat-button class="menuButton"  routerLink="api-key" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                                 <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                                 <span jhiTranslate="global.menu.entities.apiKey" style="margin-left: 10px">Api Key</span>
                             </button>
@@ -198,8 +204,8 @@
             <div class="card jh-card">
                 <router-outlet></router-outlet>
             </div>
-<!--            <jhi-footer></jhi-footer>-->
         </div>
+<!--        <jhi-footer style="text-align:right; width: 100%;"></jhi-footer>-->
     </mat-sidenav-content>
 </mat-sidenav-container>
 
