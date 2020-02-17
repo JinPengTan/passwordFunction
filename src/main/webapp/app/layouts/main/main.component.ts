@@ -71,6 +71,10 @@ export class MainComponent implements OnInit {
     });
 
     this.translateService.onLangChange.subscribe(() => this.updateTitle());
+
+    if (!this.isAuthenticated()) {
+      this.loginModalService.open();
+    }
   }
 
   changeLanguage(languageKey: string): void {

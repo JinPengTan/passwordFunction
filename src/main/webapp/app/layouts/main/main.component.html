@@ -120,12 +120,12 @@
                                 <span jhiTranslate="global.menu.account.login"  style="margin-left: 10px">Sign in</span>
                             </button>
                         </div>
-                        <div *ngSwitchCase="false">
-                            <button  class="menuButton"  mat-button routerLink="account/register">
-                                <fa-icon icon="user-plus" fixedWidth="true"></fa-icon>
-                                <span jhiTranslate="global.menu.account.register" style="margin-left: 10px">Register</span>
-                            </button>
-                        </div>
+<!--                        <div *ngSwitchCase="false">-->
+<!--                            <button  class="menuButton"  mat-button routerLink="account/register">-->
+<!--                                <fa-icon icon="user-plus" fixedWidth="true"></fa-icon>-->
+<!--                                <span jhiTranslate="global.menu.account.register" style="margin-left: 10px">Register</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
                         <div *ngSwitchCase="true">
                             <button  class="menuButton"  mat-button routerLink="account/settings" routerLinkActive="active" *ngIf="passwordChecker() == 'false'">
                                 <fa-icon icon="wrench" fixedWidth="true"></fa-icon>
@@ -146,6 +146,8 @@
                         </div>
                     </mat-expansion-panel>
                     <!-- HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe-->
+                    <div *jhiHasAnyAuthority="'ROLE_ADMIN'" >
+                        <div *ngIf="passwordChecker() == 'false' && isAuthenticated()===true">
                     <mat-expansion-panel style="box-shadow: none">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -190,6 +192,8 @@
                             </button>
                         </div>
                     </mat-expansion-panel>
+                        </div>
+                    </div>
                 </div>
             </div>
             </mat-accordion>
